@@ -22,12 +22,12 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="325"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Name="CoreButton" Content="Основные альбомы" Height="100" Width="250" Click="CoreButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="0" Grid.Row="2" Name="SubCoreButton" Content="Расширенный список" Height="75" Width="250" Click="SubCoreButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="0" Grid.Row="3" Name="HipHopButton" Content="Хип-Хоп" Height="75" Width="250" Click="HipHopButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="0" Grid.Row="4" Name="JazzButton" Content="Джаз" Height="75" Width="250" Click="JazzButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="2" Grid.Row="2" Name="ClassiscButton" Content="Классические" Height="75" Width="250" Click="ClassiscButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="2" Grid.Row="3" Name="ElectronicButton" Content="Электроника" Height="75" Width="250" Click="ElectronicButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="2" Grid.Row="4" Name="MetalButton" Content="Метал" Height="75" Width="250" Click="MetalButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="1" Grid.Row="1" Name="CoreButton" Content="Основные альбомы" Height="100" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="0" Grid.Row="2" Name="SubCoreButton" Content="Расширенный список" Height="75" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="0" Grid.Row="3" Name="HipHopButton" Content="Хип-Хоп" Height="75" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="0" Grid.Row="4" Name="JazzButton" Content="Джаз" Height="75" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" Grid.Row="2" Name="ClassiscButton" Content="Классические" Height="75" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" Grid.Row="3" Name="ElectronicButton" Content="Электроника" Height="75" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" Grid.Row="4" Name="MetalButton" Content="Метал" Height="75" Width="250" Click="RecButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>

@@ -25,39 +25,9 @@ namespace mu_tants
             InitializeComponent();
         }
 
-        private void CoreButton_Click(object sender, RoutedEventArgs e)
+        private void RecButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void SubCoreButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HipHopButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void JazzButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ClassiscButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ElectronicButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MetalButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+            NavigationService.Navigate(new Recomendations());
+        }        
     }
 }

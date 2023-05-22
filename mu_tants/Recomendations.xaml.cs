@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace mu_tants
 {
     /// <summary>
-    /// Логика взаимодействия для Genres.xaml
+    /// Логика взаимодействия для Recomendations.xaml
     /// </summary>
-    public partial class Genres : Page
+    public partial class Recomendations : Page
     {
-        public Genres()
+        public Recomendations()
         {
             InitializeComponent();
         }
