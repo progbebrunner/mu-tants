@@ -1,0 +1,27 @@
+﻿<Window x:Class="mu_tants.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mu_tants"
+        mc:Ignorable="d"
+        Title="/mu/tants" Height="800" Width="1200" MinHeight="450" MinWidth="900" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource ColorSecondary}"></Grid>
+        <Grid Grid.Row="1" Background="{StaticResource ColorAccent}"></Grid>
+        <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}"></Grid>
+        <Image Source="/Resources/vinyl.png" HorizontalAlignment="Left"></Image>
+        <Image Source="/Resources/vinyl_w_needle.png" HorizontalAlignment="Right"></Image>
+        <TextBlock Style="{StaticResource BlockCommon}" Margin="0 0 100 0" Name="TBlockUsername" HorizontalAlignment="Right" Width="200" Visibility="Hidden" ></TextBlock>
+        <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=FrameMain, Path=Content.Title}" HorizontalAlignment="Center"/>
+        <Frame Name="FrameMain" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="FrameMain_ContentRendered" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="назад" HorizontalAlignment="Center" Name="BtnBack" Click="BtnBack_Click" Grid.Row="2"></Button>
+    </Grid>
+</Window>
+    
+    
