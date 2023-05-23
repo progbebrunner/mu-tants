@@ -32,6 +32,7 @@ namespace mu_tants
         public virtual DbSet<Musicians> Musicians { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Types> Types { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Artists_To_Musicians> Artists_To_Musicians { get; set; }
     }

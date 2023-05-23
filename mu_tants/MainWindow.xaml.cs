@@ -30,8 +30,7 @@ namespace mu_tants
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (FrameMain.CanGoBack && MessageBox.Show($" Вы уверены, что хотите вернуться? \n Несохраненные данные могут быть утеряны ",
-                "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
+            if (FrameMain.CanGoBack)
                 FrameMain.GoBack();
         }
 

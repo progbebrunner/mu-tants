@@ -4,16 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище MuModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Albums">
           <Key>
             <PropertyRef Name="album_id" />
           </Key>
           <Property Name="album_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="album_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="album_img" Type="nvarchar" MaxLength="50" />
           <Property Name="artist_id" Type="int" Nullable="false" />
           <Property Name="release_date" Type="date" />
           <Property Name="label_id" Type="int" />
+          <Property Name="type_id" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "mu-tants.dbo.Albums_To_Genres" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -30,8 +32,9 @@
             <PropertyRef Name="artist_id" />
           </Key>
           <Property Name="artist_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="artist_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="foundation" Type="date" />
+          <Property Name="artist_img" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "mu-tants.dbo.Artists_To_Genres" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -73,8 +76,8 @@
             <PropertyRef Name="musician_id" />
           </Key>
           <Property Name="musician_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mus_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mus_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="birthday" Type="date" />
           <Property Name="info" Type="nvarchar" MaxLength="300" />
         </EntityType>
@@ -95,12 +98,19 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_img" Type="nvarchar" MaxLength="50" />
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="role" Type="int" />
@@ -144,6 +154,18 @@
             </Principal>
             <Dependent Role="Albums_To_Genres">
               <PropertyRef Name="genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Albums_Types">
+          <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -231,7 +253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ModelContainer">
+        <EntityContainer Name="Хранилище MuModelContainer">
           <EntitySet Name="Albums" EntityType="Self.Albums" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Artists" EntityType="Self.Artists" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
@@ -239,6 +261,7 @@
           <EntitySet Name="Musicians" EntityType="Self.Musicians" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Albums_To_Genres" EntityType="Self.Albums_To_Genres" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -269,6 +292,10 @@
           <AssociationSet Name="FK_Albums_To_Genres_Genre" Association="Self.FK_Albums_To_Genres_Genre">
             <End Role="Genre" EntitySet="Genre" />
             <End Role="Albums_To_Genres" EntitySet="Albums_To_Genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Albums_Types" Association="Self.FK_Albums_Types">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="Albums" EntitySet="Albums" />
           </AssociationSet>
           <AssociationSet Name="FK_Artists_To_Genres_Artists" Association="Self.FK_Artists_To_Genres_Artists">
             <End Role="Artists" EntitySet="Artists" />
@@ -303,17 +330,20 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Albums">
           <Key>
             <PropertyRef Name="album_id" />
           </Key>
           <Property Name="album_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="album_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="album_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="artist_id" Type="Int32" Nullable="false" />
           <Property Name="release_date" Type="DateTime" Precision="0" />
           <Property Name="label_id" Type="Int32" />
+          <Property Name="type_id" Type="Int32" />
           <NavigationProperty Name="Labels" Relationship="Self.FK_Albums_Labels" FromRole="Albums" ToRole="Labels" />
+          <NavigationProperty Name="Types" Relationship="Self.FK_Albums_Types" FromRole="Albums" ToRole="Types" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Albums" FromRole="Albums" ToRole="Users" />
           <NavigationProperty Name="Genre" Relationship="Self.Albums_To_Genres" FromRole="Albums" ToRole="Genre" />
         </EntityType>
@@ -322,8 +352,9 @@
             <PropertyRef Name="artist_id" />
           </Key>
           <Property Name="artist_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="artist_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="foundation" Type="DateTime" Precision="0" />
+          <Property Name="artist_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Artists_To_Musicians" Relationship="Self.FK_Artists_To_Musicians_Artists" FromRole="Artists" ToRole="Artists_To_Musicians" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Artists" FromRole="Artists" ToRole="Users" />
           <NavigationProperty Name="Genre" Relationship="Self.Artists_To_Genres" FromRole="Artists" ToRole="Genre" />
@@ -352,8 +383,8 @@
             <PropertyRef Name="musician_id" />
           </Key>
           <Property Name="musician_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mus_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mus_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="birthday" Type="DateTime" Precision="0" />
           <Property Name="info" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Artists_To_Musicians" Relationship="Self.FK_Artists_To_Musicians_Musicians" FromRole="Musicians" ToRole="Artists_To_Musicians" />
@@ -376,12 +407,20 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Types" FromRole="Types" ToRole="Albums" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
           <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="role" Type="Int32" />
@@ -413,6 +452,18 @@
             </Principal>
             <Dependent Role="Albums">
               <PropertyRef Name="label_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Albums_Types">
+          <End Role="Types" Type="Self.Types" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="type_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -492,10 +543,15 @@
           <EntitySet Name="Musicians" EntityType="Self.Musicians" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Artists_To_Musicians" EntityType="Self.Artists_To_Musicians" />
           <AssociationSet Name="FK_Albums_Labels" Association="Self.FK_Albums_Labels">
             <End Role="Labels" EntitySet="Labels" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Albums_Types" Association="Self.FK_Albums_Types">
+            <End Role="Types" EntitySet="Types" />
             <End Role="Albums" EntitySet="Albums" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Albums" Association="Self.FK_Users_Albums">
@@ -532,29 +588,32 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="MuEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MuModelContainer" CdmEntityContainer="MuEntities">
           <EntitySetMapping Name="Albums">
-            <EntityTypeMapping TypeName="Model.Albums">
+            <EntityTypeMapping TypeName="MuModel.Albums">
               <MappingFragment StoreEntitySet="Albums">
                 <ScalarProperty Name="album_id" ColumnName="album_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="album_name" ColumnName="album_name" />
+                <ScalarProperty Name="album_img" ColumnName="album_img" />
                 <ScalarProperty Name="artist_id" ColumnName="artist_id" />
                 <ScalarProperty Name="release_date" ColumnName="release_date" />
                 <ScalarProperty Name="label_id" ColumnName="label_id" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Artists">
-            <EntityTypeMapping TypeName="Model.Artists">
+            <EntityTypeMapping TypeName="MuModel.Artists">
               <MappingFragment StoreEntitySet="Artists">
                 <ScalarProperty Name="artist_id" ColumnName="artist_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="artist_name" ColumnName="artist_name" />
                 <ScalarProperty Name="foundation" ColumnName="foundation" />
+                <ScalarProperty Name="artist_img" ColumnName="artist_img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genre">
-            <EntityTypeMapping TypeName="Model.Genre">
+            <EntityTypeMapping TypeName="MuModel.Genre">
               <MappingFragment StoreEntitySet="Genre">
                 <ScalarProperty Name="genre_id" ColumnName="genre_id" />
                 <ScalarProperty Name="info" ColumnName="info" />
@@ -562,7 +621,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Labels">
-            <EntityTypeMapping TypeName="Model.Labels">
+            <EntityTypeMapping TypeName="MuModel.Labels">
               <MappingFragment StoreEntitySet="Labels">
                 <ScalarProperty Name="label_id" ColumnName="label_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -572,18 +631,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Musicians">
-            <EntityTypeMapping TypeName="Model.Musicians">
+            <EntityTypeMapping TypeName="MuModel.Musicians">
               <MappingFragment StoreEntitySet="Musicians">
                 <ScalarProperty Name="musician_id" ColumnName="musician_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="mus_name" ColumnName="mus_name" />
+                <ScalarProperty Name="mus_surname" ColumnName="mus_surname" />
                 <ScalarProperty Name="birthday" ColumnName="birthday" />
                 <ScalarProperty Name="info" ColumnName="info" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="Model.Roles">
+            <EntityTypeMapping TypeName="MuModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -591,7 +650,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
+            <EntityTypeMapping TypeName="MuModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -601,11 +660,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="MuModel.Types">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.Users">
+            <EntityTypeMapping TypeName="MuModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="user_img" ColumnName="user_img" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
@@ -619,14 +686,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Artists_To_Musicians">
-            <EntityTypeMapping TypeName="Model.Artists_To_Musicians">
+            <EntityTypeMapping TypeName="MuModel.Artists_To_Musicians">
               <MappingFragment StoreEntitySet="Artists_To_Musicians">
                 <ScalarProperty Name="artist_id" ColumnName="artist_id" />
                 <ScalarProperty Name="musician_id" ColumnName="musician_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Albums_To_Genres" TypeName="Model.Albums_To_Genres" StoreEntitySet="Albums_To_Genres">
+          <AssociationSetMapping Name="Albums_To_Genres" TypeName="MuModel.Albums_To_Genres" StoreEntitySet="Albums_To_Genres">
             <EndProperty Name="Albums">
               <ScalarProperty Name="album_id" ColumnName="album_id" />
             </EndProperty>
@@ -634,7 +701,7 @@
               <ScalarProperty Name="genre_id" ColumnName="genre_id" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Artists_To_Genres" TypeName="Model.Artists_To_Genres" StoreEntitySet="Artists_To_Genres">
+          <AssociationSetMapping Name="Artists_To_Genres" TypeName="MuModel.Artists_To_Genres" StoreEntitySet="Artists_To_Genres">
             <EndProperty Name="Artists">
               <ScalarProperty Name="artist_id" ColumnName="artist_id" />
             </EndProperty>

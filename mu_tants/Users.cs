@@ -15,7 +15,7 @@ namespace mu_tants
     public partial class Users
     {
         public int user_id { get; set; }
-        public string image { get; set; }
+        public string user_img { get; set; }
         public string login { get; set; }
         public string password { get; set; }
         public Nullable<int> role { get; set; }

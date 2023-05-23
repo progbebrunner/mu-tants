@@ -23,6 +23,22 @@ namespace mu_tants
         public Recomendations()
         {
             InitializeComponent();
+            AlbunsLoad();
         }
+
+        public void AlbunsLoad()
+        {
+            var albums = App.Context.Albums.ToList();
+        }
+
+        private void ArtistButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AlbumButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

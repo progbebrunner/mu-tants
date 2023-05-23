@@ -12,21 +12,18 @@ namespace mu_tants
     using System;
     using System.Collections.Generic;
     
-    public partial class Musicians
+    public partial class Types
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Musicians()
+        public Types()
         {
-            this.Artists_To_Musicians = new HashSet<Artists_To_Musicians>();
+            this.Albums = new HashSet<Albums>();
         }
     
-        public int musician_id { get; set; }
-        public string mus_name { get; set; }
-        public string mus_surname { get; set; }
-        public Nullable<System.DateTime> birthday { get; set; }
-        public string info { get; set; }
+        public int type_id { get; set; }
+        public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artists_To_Musicians> Artists_To_Musicians { get; set; }
+        public virtual ICollection<Albums> Albums { get; set; }
     }
 }

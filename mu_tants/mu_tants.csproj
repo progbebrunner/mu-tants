@@ -74,40 +74,40 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Albums.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Artists.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Artists_To_Musicians.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Genre.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Labels.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
+    <Compile Include="MuModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>MuModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.cs">
+    <Compile Include="MuModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Designer.cs">
+    <Compile Include="MuModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>MuModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Musicians.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Recomendations.xaml.cs">
       <DependentUpon>Recomendations.xaml</DependentUpon>
@@ -116,13 +116,16 @@
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Types.cs">
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Page Include="Authorization.xaml">
       <SubType>Designer</SubType>
@@ -174,12 +177,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="MuModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>MuModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="MuModel.edmx.diagram">
+      <DependentUpon>MuModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -203,18 +206,20 @@
     <Folder Include="Resources\Users\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Resource Include="mu.ico" />
     <Resource Include="Resources\vinyl_w_needle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MuModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuModel.edmx</DependentUpon>
+      <LastGenOutput>MuModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MuModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuModel.edmx</DependentUpon>
+      <LastGenOutput>MuModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
