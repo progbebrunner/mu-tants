@@ -19,25 +19,29 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged">
-                <ComboBoxItem Content="А - Я"></ComboBoxItem>
-                <ComboBoxItem Content="Я - А"></ComboBoxItem>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged" Background="{StaticResource ColorSecondary}">
+                <ComboBoxItem Content="Артист: А - Я"></ComboBoxItem>
+                <ComboBoxItem Content="Артист: Я - А"></ComboBoxItem>
+                <ComboBoxItem Content="Альбом: А - Я"></ComboBoxItem>
+                <ComboBoxItem Content="Альбом: Я - А"></ComboBoxItem>
             </ComboBox>
             <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
+            
         </StackPanel>
-        <ListView x:Name="LVAlbums" Grid.Row="1" Grid.Column="1" Background="Transparent">
+        <ListView x:Name="LVAlbums" Grid.Row="1" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <StackPanel Grid.Column="2" Orientation="Horizontal" Height="150" Clip="">
-                            <Image x:Name="ImageService" Width="100" Height="100" Source="Resources/just_img.png"/>
-                            <Button Content="{Binding artist_name}" Click="ArtistButton_Click"></Button>
-                            <Button Content="{Binding album_name}" Click="AlbumButton_Click"></Button>
+                        <StackPanel Orientation="Horizontal" Height="150" Width="auto">
+                            <Image x:Name="ImageService" Width="100" Height="100" Source="{Binding new_img}"/>
+                            <Button Content="{Binding artist_name}" ></Button>
+                            <Button Content="{Binding album_name}" ></Button>
                         </StackPanel>
-                    </Grid>                    
+                    </Grid>                      
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 10 0 0" Foreground="Red" FontSize="15" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
     </Grid>
 </Page>

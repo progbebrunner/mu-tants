@@ -20,25 +20,52 @@ namespace mu_tants
     /// </summary>
     public partial class Recomendations : Page
     {
-        public Recomendations()
+        public int type ;
+        public Recomendations(int x)
         {
             InitializeComponent();
-            AlbunsLoad();
+            type = x;
+            AlbumsLoad(x);
+            ComboSortBy.SelectedIndex= 0;
         }
 
-        public void AlbunsLoad()
+        public void AlbumsLoad(int x)
         {
-            var albums = App.Context.Albums.ToList();
+            var albums = App.Context.Albums.Where(a => a.type_id == x).ToList();
+            switch (ComboSortBy.SelectedIndex)
+            {
+                case 0:
+                    albums = albums.OrderBy(a => a.artist_name).ToList();
+                    break;
+                case 1:
+                    albums = albums.OrderByDescending(a => a.artist_name).ToList();
+                    break;
+                case 2:
+                    albums = albums.OrderBy(a => a.album_name).ToList();
+                    break;
+                case 3:
+                    albums = albums.OrderByDescending(a => a.album_name).ToList();
+                    break;                
+            }
+            albums = albums.Where(a => a.artist_name.ToLower().Contains(TBoxSearch.Text.ToLower()) || a.album_name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            LVAlbums.ItemsSource = null;
+            LVAlbums.ItemsSource = albums;
+            if (LVAlbums.Items.Count == 0)
+            {
+                txtError.Text = "По вашему запросу ничего не найдено";
+            }
+            else if(ComboSortBy.Text.Trim() == null) {
+            }
         }
 
-        private void ArtistButton_Click(object sender, RoutedEventArgs e)
+        private void ComboSortBy_SelectionChanged(object sender, RoutedEventArgs e)
         {
-
+            AlbumsLoad(type);
         }
-        private void AlbumButton_Click(object sender, RoutedEventArgs e)
+        private void TBoxSearch_TextChanged(object sender, RoutedEventArgs e)
         {
-
+            txtError.Text = null;
+            AlbumsLoad(type);
         }
-
     }
 }

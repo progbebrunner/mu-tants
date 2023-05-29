@@ -11,7 +11,9 @@ namespace mu_tants
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+    using System.IO;
+
     public partial class Albums
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +22,38 @@ namespace mu_tants
             this.Users = new HashSet<Users>();
             this.Genre = new HashSet<Genre>();
         }
-    
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Albums\");
+
         public int album_id { get; set; }
         public string album_name { get; set; }
-        public string album_img { get; set; }
         public int artist_id { get; set; }
-        public Nullable<System.DateTime> release_date { get; set; }
+        public string artist_name 
+        { 
+            get
+            {
+                var artists = App.Context.Artists.ToList();
+                var artist = artists.Where(a => a.artist_id == artist_id).FirstOrDefault();
+                return artist.artist_name;
+            }
+        }
+        public string album_img { get; set; }
+
+        public string new_img
+        {
+            get
+            {
+                if (File.Exists(path + album_img))
+                {
+                    return path + album_img;
+                }
+                else
+                {
+                    return "just_img.png";
+                }
+            }
+        }
+
+public Nullable<System.DateTime> release_date { get; set; }
         public Nullable<int> label_id { get; set; }
         public Nullable<int> type_id { get; set; }
     

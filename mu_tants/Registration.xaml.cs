@@ -33,7 +33,7 @@ namespace mu_tants
         //переменные для вставки изображения
         public byte[] _mainImageData = null;
         public string justimg = "just_img.png";
-        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Users");
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Users\");
         public string selectedFile;
         public string extension = ".png";
 
@@ -94,7 +94,6 @@ namespace mu_tants
                                     if (justimg != null)
                                     {
                                         justimg = txtLogin.Text + extension;
-                                        var files = Directory.GetFiles(path);
                                         int x = 0;
                                         while (File.Exists(path + justimg))
                                         {
@@ -112,7 +111,7 @@ namespace mu_tants
                                     }
 
                                     myConnection.Open();
-                                    string addquery = $"insert into Users([image],[login],[password],[role],[name],[surname],[email],[birthday]) values ('{justimg}', Trim('{txtLogin.Text}'), Trim('{txtPassword.Password}'), '2', Trim('{txtName.Text}'), Trim('{txtSurname.Text}'), Trim('{txtEmail.Text}'), '{dtBirthday.Text}')";
+                                    string addquery = $"insert into Users([user_img],[login],[password],[role],[name],[surname],[email],[birthday]) values ('{justimg}', Trim('{txtLogin.Text}'), Trim('{txtPassword.Password}'), '2', Trim('{txtName.Text}'), Trim('{txtSurname.Text}'), Trim('{txtEmail.Text}'), '{dtBirthday.Text}')";
                                     SqlDataAdapter addadpt = new SqlDataAdapter(addquery, myConnection);
                                     DataTable addtable = new DataTable();
                                     addadpt.Fill(addtable);

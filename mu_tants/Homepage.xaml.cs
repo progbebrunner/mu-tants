@@ -27,7 +27,31 @@ namespace mu_tants
 
         private void RecButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Recomendations());
+            string name = (sender as Button).Name.ToString();
+            switch (name)
+            {
+                case "CoreButton":
+                    NavigationService.Navigate(new Recomendations(1));
+                    break;
+                case "SubCoreButton":
+                    NavigationService.Navigate(new Recomendations(2));
+                    break;
+                case "HipHopButton":
+                    NavigationService.Navigate(new Recomendations(4));
+                    break;
+                case "JazzButton":
+                    NavigationService.Navigate(new Recomendations(6));
+                    break;
+                case "ClassiscButton":
+                    NavigationService.Navigate(new Recomendations(3));
+                    break;
+                case "ElectronicButton":
+                    NavigationService.Navigate(new Recomendations(5));
+                    break;
+                case "MetalButton":
+                        NavigationService.Navigate(new Recomendations(7));
+                    break;
+            }
         }        
     }
 }
