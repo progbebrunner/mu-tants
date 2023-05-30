@@ -25,6 +25,7 @@ namespace mu_tants
         public string artist_name { get; set; }
         public Nullable<System.DateTime> foundation { get; set; }
         public string artist_img { get; set; }
+        public string artist_info { get; set; }
     
         public virtual Artists_To_Musicians Artists_To_Musicians { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

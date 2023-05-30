@@ -85,6 +85,9 @@
     <Compile Include="Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Countries.cs">
+      <DependentUpon>MuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Genre.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
@@ -116,9 +119,6 @@
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
-      <DependentUpon>MuModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Types.cs">

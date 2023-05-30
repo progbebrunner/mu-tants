@@ -67,5 +67,13 @@ namespace mu_tants
             txtError.Text = null;
             AlbumsLoad(type);
         }
+
+        private void ArtistButton_Click(object sender, RoutedEventArgs e)
+        {
+            string artist_name = (sender as Button).Content.ToString();
+            var artist = App.Context.Artists.Where(x => x.artist_name == artist_name).ToList();
+            int artist_id = artist[0].artist_id;
+            NavigationService.Navigate(new Artist(artist_id));
+        }
     }
 }

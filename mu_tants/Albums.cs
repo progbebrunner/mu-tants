@@ -27,8 +27,8 @@ namespace mu_tants
         public int album_id { get; set; }
         public string album_name { get; set; }
         public int artist_id { get; set; }
-        public string artist_name 
-        { 
+        public string artist_name
+        {
             get
             {
                 var artists = App.Context.Artists.ToList();
@@ -53,10 +53,10 @@ namespace mu_tants
             }
         }
 
-public Nullable<System.DateTime> release_date { get; set; }
+        public Nullable<System.DateTime> release_date { get; set; }
         public Nullable<int> label_id { get; set; }
         public Nullable<int> type_id { get; set; }
-    
+
         public virtual Labels Labels { get; set; }
         public virtual Types Types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

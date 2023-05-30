@@ -35,7 +35,7 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" Height="150" Width="auto">
                             <Image x:Name="ImageService" Width="100" Height="100" Source="{Binding new_img}"/>
-                            <Button Content="{Binding artist_name}" ></Button>
+                            <Button Content="{Binding artist_name}" Click="ArtistButton_Click"></Button>
                             <Button Content="{Binding album_name}" ></Button>
                         </StackPanel>
                     </Grid>                      
