@@ -10,9 +10,10 @@
             <PropertyRef Name="album_id" />
           </Key>
           <Property Name="album_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="album_name" Type="nvarchar" MaxLength="100" />
           <Property Name="album_img" Type="nvarchar" MaxLength="100" />
+          <Property Name="album_name" Type="nvarchar" MaxLength="100" />
           <Property Name="artist_id" Type="int" Nullable="false" />
+          <Property Name="length" Type="int" />
           <Property Name="release_date" Type="date" />
           <Property Name="label_id" Type="int" />
           <Property Name="type_id" Type="int" />
@@ -334,9 +335,10 @@
             <PropertyRef Name="album_id" />
           </Key>
           <Property Name="album_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="album_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="album_img" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="album_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="artist_id" Type="Int32" Nullable="false" />
+          <Property Name="length" Type="Int32" />
           <Property Name="release_date" Type="DateTime" Precision="0" />
           <Property Name="label_id" Type="Int32" />
           <Property Name="type_id" Type="Int32" />
@@ -589,9 +591,10 @@
             <EntityTypeMapping TypeName="MuModel.Albums">
               <MappingFragment StoreEntitySet="Albums">
                 <ScalarProperty Name="album_id" ColumnName="album_id" />
-                <ScalarProperty Name="album_name" ColumnName="album_name" />
                 <ScalarProperty Name="album_img" ColumnName="album_img" />
+                <ScalarProperty Name="album_name" ColumnName="album_name" />
                 <ScalarProperty Name="artist_id" ColumnName="artist_id" />
+                <ScalarProperty Name="length" ColumnName="length" />
                 <ScalarProperty Name="release_date" ColumnName="release_date" />
                 <ScalarProperty Name="label_id" ColumnName="label_id" />
                 <ScalarProperty Name="type_id" ColumnName="type_id" />

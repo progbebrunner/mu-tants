@@ -26,7 +26,8 @@ namespace mu_tants
 
         public int album_id { get; set; }
         public string album_name { get; set; }
-        public int artist_id { get; set; }
+        public int artist_id { get; set; } 
+        public int length { get; set; }
         public string artist_name
         {
             get

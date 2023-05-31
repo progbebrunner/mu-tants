@@ -76,6 +76,9 @@
     <Compile Include="Albums.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Artist.xaml.cs">
+      <DependentUpon>Artist.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Artists.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
     <Compile Include="Users.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
+    <Page Include="Artist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

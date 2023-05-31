@@ -10,6 +10,7 @@
 namespace mu_tants
 {
     using System;
+    using System.IO;
     using System.Collections.Generic;
     
     public partial class Artists
@@ -20,12 +21,43 @@ namespace mu_tants
             this.Users = new HashSet<Users>();
             this.Genre = new HashSet<Genre>();
         }
-    
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Artists\");
+
         public int artist_id { get; set; }
         public string artist_name { get; set; }
         public Nullable<System.DateTime> foundation { get; set; }
+        public string foundation_date
+        {
+            get
+            {
+                string found_date = "Дата основания: " + foundation.Value.Year.ToString();
+                return found_date;
+            }
+        }
         public string artist_img { get; set; }
+        public string new_img
+        {
+            get
+            {
+                if (File.Exists(path + artist_img))
+                {
+                    return path + artist_img;
+                }
+                else
+                {
+                    return "just_img.png";
+                }
+            }
+        }
         public string artist_info { get; set; }
+        public string new_info 
+        { 
+            get 
+            {
+                string info = "\n" + artist_info;
+                return info;
+            } 
+        }
     
         public virtual Artists_To_Musicians Artists_To_Musicians { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

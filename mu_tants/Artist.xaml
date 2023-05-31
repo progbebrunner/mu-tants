@@ -5,54 +5,58 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:mu_tants"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Artist">
+      d:DesignHeight="675" d:DesignWidth="800"
+      Title="Исполнитель">
 
     <Grid Background="{StaticResource ColorAccent}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="25"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <ListView x:Name="ArtistInfo" Grid.Row="1" Grid.Column="1" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" Height="150" Width="auto">
-                                <Image x:Name="ImageService" Width="100" Height="100" Source="{Binding new_img}"/>
-                                <Button Content="{Binding album_name}" ></Button>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged" Background="{StaticResource ColorSecondary}">
-                    <ComboBoxItem Content="Альбом: А - Я"></ComboBoxItem>
-                    <ComboBoxItem Content="Альбом: Я - А"></ComboBoxItem>
-                </ComboBox>
-                <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
-
-            </StackPanel>
-            <ListView x:Name="LVAlbums" Grid.Row="3" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" Height="150" Width="auto">
-                                <Image x:Name="ImageService" Width="100" Height="100" Source="{Binding new_img}"/>
-                                <Button Content="{Binding album_name}" ></Button>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 10 0 0" Foreground="Red" FontSize="15" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="ArtistInfo" Grid.Row="1" Grid.Column="1" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top">
+            <ListView.ItemTemplate>
+                <DataTemplate>                    
+                    <Grid>
+                       <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="250" Width="700">
+                            <Image x:Name="ImageService" Width="250" Height="250" Source="{Binding new_img}"/>
+                            <ScrollViewer>
+                                <StackPanel Orientation="Vertical" Height="auto" Width="450">
+                                    <TextBlock Text="{Binding foundation_date}" Style="{StaticResource BlockCommon}" FontSize="25"></TextBlock>
+                                    <TextBlock Text="{Binding artist_info}" TextWrapping="Wrap" Style="{StaticResource BlockCommon}"></TextBlock>
+                                </StackPanel>
+                            </ScrollViewer>                            
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged" Background="{StaticResource ColorSecondary}">
+                <ComboBoxItem Content="Альбом: А - Я"></ComboBoxItem>
+                <ComboBoxItem Content="Альбом: Я - А"></ComboBoxItem>
+            </ComboBox>
+            <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
+        </StackPanel>
+        <ListView x:Name="ArtistAlbums" Grid.Row="3" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical" Height="250" Width="250">
+                            <Image x:Name="ImageService" Width="200" Height="200" Source="{Binding new_img}"/>
+                            <Button Content="{Binding album_name}" Width="auto"></Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="0 10 0 0" Foreground="Red" FontSize="15" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
+    </Grid>
 </Page>

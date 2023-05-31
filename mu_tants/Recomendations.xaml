@@ -10,7 +10,7 @@
 
     <Grid Background="{StaticResource ColorAccent}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
@@ -33,10 +33,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <StackPanel Orientation="Horizontal" Height="150" Width="auto">
-                            <Image x:Name="ImageService" Width="100" Height="100" Source="{Binding new_img}"/>
-                            <Button Content="{Binding artist_name}" Click="ArtistButton_Click"></Button>
-                            <Button Content="{Binding album_name}" ></Button>
+                        <StackPanel Orientation="Horizontal" Height="auto" Width="auto">
+                            <Image x:Name="ImageService" Width="200" Height="200" Source="{Binding new_img}"/>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="auto" Width="250px">
+                                <Button HorizontalAlignment="Center" Content="{Binding artist_name}" Click="ArtistButton_Click" Width="auto" Padding="5px"></Button>
+                                <Button HorizontalAlignment="Center" Content="{Binding album_name}" Width="auto" Padding="5px"></Button>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>                      
                 </DataTemplate>
