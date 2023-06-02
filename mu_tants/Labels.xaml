@@ -1,4 +1,4 @@
-﻿<Page x:Class="mu_tants.Artist"
+﻿<Page x:Class="mu_tants.Labels"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:mu_tants"
       mc:Ignorable="d" 
       d:DesignHeight="675" d:DesignWidth="1000"
-      Title="Исполнитель">
+      Title="Лейбл">
 
     <Grid Background="{StaticResource ColorAccent}">
         <Grid.RowDefinitions>
@@ -18,21 +18,21 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
         </Grid.ColumnDefinitions>
         <ListView x:Name="ArtistInfo" Grid.Row="1" Grid.Column="1" MinHeight="250" Background="Transparent" BorderBrush="Transparent" Width="950" VerticalAlignment="Top">
             <ListView.ItemTemplate>
-                <DataTemplate>                    
+                <DataTemplate>
                     <Grid>
-                       <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="250" Width="900">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="250" Width="900">
                             <Image x:Name="ImageService" Width="auto" Height="auto" Source="{Binding new_img}"/>
                             <ScrollViewer>
                                 <StackPanel Orientation="Vertical" Height="auto" Width="auto" MaxWidth="777">
                                     <TextBlock Text="{Binding foundation_date}" Style="{StaticResource BlockCommon}" FontSize="25"></TextBlock>
                                     <TextBlock Text="{Binding artist_info}" Style="{StaticResource BlockCommon}" MaxWidth="555"></TextBlock>
                                 </StackPanel>
-                            </ScrollViewer>                            
+                            </ScrollViewer>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -52,7 +52,7 @@
                         <StackPanel Orientation="Vertical" Height="auto" Width="auto">
                             <Image x:Name="ImageService" Width="200" Height="200" Source="{Binding new_img}"/>
                             <Button Content="{Binding album_name}" Click="AlbumButton_Click" Width="auto"></Button>
-                        </StackPanel>                    
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -55,8 +55,33 @@ namespace mu_tants
         }
 
         public Nullable<System.DateTime> release_date { get; set; }
+        public string new_release_date
+        {
+            get
+            {
+                return release_date.Value.Date.ToString();
+            }
+        }
         public Nullable<int> label_id { get; set; }
+        public string label_name 
+        {
+            get
+            {
+                var labels = App.Context.Labels.ToList();
+                var label = labels.Where(a => a.label_id == label_id).FirstOrDefault();
+                return label.name;
+            }
+        }
         public Nullable<int> type_id { get; set; }
+        public string type_name
+        {
+            get
+            {
+                var types = App.Context.Types.ToList();
+                var type = types.Where(a => a.type_id == type_id).FirstOrDefault();
+                return type.name;
+            }
+        }
 
         public virtual Labels Labels { get; set; }
         public virtual Types Types { get; set; }

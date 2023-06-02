@@ -16,24 +16,24 @@ using System.Windows.Shapes;
 namespace mu_tants
 {
     /// <summary>
-    /// Логика взаимодействия для Artist.xaml
+    /// Логика взаимодействия для Labels.xaml
     /// </summary>
-    public partial class Artist : Page
+    public partial class Labels : Page
     {
-        public int artist_id;
-        public Artist(int x)
+        public int label;
+        public Labels(int x)
         {
             InitializeComponent();
-            artist_id = x;
-            ArtistLoad(x);
+            label = x;
+            LabelLoad(x);
             AlbumsLoad(x);
             ComboSortBy.SelectedIndex = 0;
         }
 
-        private void ArtistLoad(int x)
+        private void LabelLoad(int x)
         {
-            var artist = App.Context.Artists.Where(a => a.artist_id == x).ToList();
-            ArtistInfo.ItemsSource = artist;
+            var labels = App.Context.Labels.Where(a => a.label_id == x).ToList();
+            ArtistInfo.ItemsSource = labels;
         }
 
         public void AlbumsLoad(int x)
@@ -59,12 +59,12 @@ namespace mu_tants
 
         private void ComboSortBy_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            AlbumsLoad(artist_id);
+            AlbumsLoad(label);
         }
         private void TBoxSearch_TextChanged(object sender, RoutedEventArgs e)
         {
             txtError.Text = null;
-            AlbumsLoad(artist_id);
+            AlbumsLoad(label);
         }
 
         private void AlbumButton_Click(object sender, RoutedEventArgs e)
@@ -74,5 +74,6 @@ namespace mu_tants
             int album_id = albums[0].album_id;
             NavigationService.Navigate(new Album(album_id));
         }
+    }
     }
 }

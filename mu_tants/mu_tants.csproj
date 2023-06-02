@@ -73,6 +73,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Album.xaml.cs">
+      <DependentUpon>Album.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Albums.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
     <Compile Include="Users.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
+    <Page Include="Album.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Artist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

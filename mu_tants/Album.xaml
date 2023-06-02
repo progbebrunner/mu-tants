@@ -1,0 +1,53 @@
+﻿<Page x:Class="mu_tants.Album"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mu_tants"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="900"
+      Title="Альбом">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Альбом </TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Исполнитель </TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Дата выпуска </TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Длительность </TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Лэйбл </TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Список </TextBlock>
+        </StackPanel>
+        <ListView x:Name="AlbumInfo" Grid.Column="1" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBlock  Width="auto" Text="{Binding artist_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBlock  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBlock  Width="auto" Text="{Binding length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click"/>                            
+                            <Button  Width="auto" Content="{Binding type_name}" Click="TypeButton_Click"/>                            
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="AlbumImg" Grid.Column="2" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical" Height="auto" Width="auto">
+                            <Image x:Name="ImageService" Width="auto" Height="auto" Source="{Binding new_img}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

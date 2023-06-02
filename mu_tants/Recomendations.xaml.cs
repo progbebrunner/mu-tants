@@ -20,7 +20,7 @@ namespace mu_tants
     /// </summary>
     public partial class Recomendations : Page
     {
-        public int type ;
+        public int type;
         public Recomendations(int x)
         {
             InitializeComponent();
@@ -74,6 +74,14 @@ namespace mu_tants
             var artist = App.Context.Artists.Where(x => x.artist_name == artist_name).ToList();
             int artist_id = artist[0].artist_id;
             NavigationService.Navigate(new Artist(artist_id));
+        }
+
+        private void AlbumButton_Click(object sender, RoutedEventArgs e)
+        {
+            string album_name = (sender as Button).Content.ToString();
+            var albums = App.Context.Albums.Where(x => x.album_name == album_name).ToList();
+            int album_id = albums[0].album_id;
+            NavigationService.Navigate(new Album(album_id));
         }
     }
 }

@@ -30,7 +30,7 @@ namespace mu_tants
         {
             get
             {
-                string found_date = "Дата основания: " + foundation.Value.Year.ToString();
+                string found_date = "Начало карьеры: " + foundation.Value.Year.ToString();
                 return found_date;
             }
         }
