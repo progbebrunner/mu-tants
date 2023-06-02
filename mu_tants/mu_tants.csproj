@@ -100,6 +100,9 @@
     <Compile Include="Labels.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Labels.xaml.cs">
+      <DependentUpon>Labels.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MuModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Homepage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Labels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,11 +224,98 @@
     <Resource Include="Resources\just_img.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Users\" />
+    <Folder Include="Resources\Labels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="mu.ico" />
     <Resource Include="Resources\vinyl_w_needle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Artists\animal collective.png" />
+    <Resource Include="Resources\Artists\aphex twin.png" />
+    <Resource Include="Resources\Artists\beach boys.png" />
+    <Resource Include="Resources\Artists\daft punk.png" />
+    <Resource Include="Resources\Artists\danny brown.png" />
+    <Resource Include="Resources\Artists\david bowie.png" />
+    <Resource Include="Resources\Artists\death grips.png" />
+    <Resource Include="Resources\Artists\dr dre.png" />
+    <Resource Include="Resources\Artists\gorillaz.png" />
+    <Resource Include="Resources\Artists\kendrick lamar.png" />
+    <Resource Include="Resources\Artists\king crimson.png" />
+    <Resource Include="Resources\Artists\krafwerk.png" />
+    <Resource Include="Resources\Artists\mac demarco.png" />
+    <Resource Include="Resources\Artists\madvillain.png" />
+    <Resource Include="Resources\Artists\mf doom.png" />
+    <Resource Include="Resources\Artists\my bloody valentine.png" />
+    <Resource Include="Resources\Artists\neutral milk hotel.png" />
+    <Resource Include="Resources\Artists\nirvana.png" />
+    <Resource Include="Resources\Artists\outkast.png" />
+    <Resource Include="Resources\Artists\pink floyd.png" />
+    <Resource Include="Resources\Artists\radiohead.png" />
+    <Resource Include="Resources\Artists\talking heads.png" />
+    <Resource Include="Resources\Artists\the avalanches.png" />
+    <Resource Include="Resources\Artists\the beatles.png" />
+    <Resource Include="Resources\Artists\the velvet underground.png" />
+    <Resource Include="Resources\Artists\weezer.png" />
+    <Resource Include="Resources\Albums\animal collective merriweather post pavilion.png" />
+    <Resource Include="Resources\Albums\aphex twin selected ambient works 85-92.png" />
+    <Resource Include="Resources\Albums\beach boys pet sounds.png" />
+    <Resource Include="Resources\Albums\daft punk discovery.png" />
+    <Resource Include="Resources\Albums\danny brown atrocity exhibition.png" />
+    <Resource Include="Resources\Albums\danny brown xxx.png" />
+    <Resource Include="Resources\Albums\david bowie heroes.png" />
+    <Resource Include="Resources\Albums\david bowie low.png" />
+    <Resource Include="Resources\Albums\david bowie station to station.png" />
+    <Resource Include="Resources\Albums\david bowie the rise and fall of ziggy stardust.png" />
+    <Resource Include="Resources\Albums\death grips exmilitary.png" />
+    <Resource Include="Resources\Albums\death grips no love deep web.png" />
+    <Resource Include="Resources\Albums\death grips the money store.png" />
+    <Resource Include="Resources\Albums\death grips the powers that b.png" />
+    <Resource Include="Resources\Albums\dr dre 2001.png" />
+    <Resource Include="Resources\Albums\dr dre the chronic.png" />
+    <Resource Include="Resources\Albums\gorillaz demon days.png" />
+    <Resource Include="Resources\Albums\gorillaz plastic beach.png" />
+    <Resource Include="Resources\Albums\kendrick lamar good kid, m.A.A.d city.png" />
+    <Resource Include="Resources\Albums\kendrick lamar to pimp a butterfly.png" />
+    <Resource Include="Resources\Albums\king crimson discipline.png" />
+    <Resource Include="Resources\Albums\king crimson in the court of the crimson king.png" />
+    <Resource Include="Resources\Albums\king crimson larks tongue in aspic.png" />
+    <Resource Include="Resources\Albums\king crimson red.png" />
+    <Resource Include="Resources\Albums\kraftwerk the man-machine.png" />
+    <Resource Include="Resources\Albums\kraftwerk trans-europe express.png" />
+    <Resource Include="Resources\Albums\mac demarco 2.png" />
+    <Resource Include="Resources\Albums\mac demarco salad days.png" />
+    <Resource Include="Resources\Albums\mac demarco this old dog.png" />
+    <Resource Include="Resources\Albums\madvillain madvillainy.png" />
+    <Resource Include="Resources\Albums\mf doom operation doomsday.png" />
+    <Resource Include="Resources\Albums\my bloody valentine loveless.png" />
+    <Resource Include="Resources\Albums\neutral milk hotel in the aeroplane over the sea.png" />
+    <Resource Include="Resources\Albums\nirvana in utero.png" />
+    <Resource Include="Resources\Albums\nirvana nevermind.png" />
+    <Resource Include="Resources\Albums\outkast aquemini.png" />
+    <Resource Include="Resources\Albums\outkast stankonia.png" />
+    <Resource Include="Resources\Albums\pink floyd animals.png" />
+    <Resource Include="Resources\Albums\pink floyd the dark side of the moon.png" />
+    <Resource Include="Resources\Albums\pink floyd the piper at the gates of dawn.png" />
+    <Resource Include="Resources\Albums\pink floyd the wall.png" />
+    <Resource Include="Resources\Albums\pink floyd wish you were here.png" />
+    <Resource Include="Resources\Albums\radiohead in rainbows.png" />
+    <Resource Include="Resources\Albums\radiohead kid a.png" />
+    <Resource Include="Resources\Albums\radiohead ok computer.png" />
+    <Resource Include="Resources\Albums\radiohead the bends.png" />
+    <Resource Include="Resources\Albums\talking heads remain in light.png" />
+    <Resource Include="Resources\Albums\the avalanches since i left you.png" />
+    <Resource Include="Resources\Albums\the beatles abbey road.png" />
+    <Resource Include="Resources\Albums\the beatles revolver.png" />
+    <Resource Include="Resources\Albums\the beatles sgt peppers lonely hearts club band.png" />
+    <Resource Include="Resources\Albums\the rise and fall of ziggy stardust.png" />
+    <Resource Include="Resources\Albums\the velvet underground and nico.png" />
+    <Resource Include="Resources\Albums\the velvet underground loaded.png" />
+    <Resource Include="Resources\Albums\the velvet underground the velvet underground.png" />
+    <Resource Include="Resources\Albums\the velvet underground white light white heat.png" />
+    <Resource Include="Resources\Albums\weezer pinkerton.png" />
+    <Resource Include="Resources\Albums\weezer weezer blue album.png" />
+    <Resource Include="Resources\Users\david.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MuModel.Context.tt">

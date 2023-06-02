@@ -75,5 +75,5 @@ namespace mu_tants
             NavigationService.Navigate(new Album(album_id));
         }
     }
-    }
 }
+

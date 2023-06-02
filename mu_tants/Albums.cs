@@ -26,7 +26,7 @@ namespace mu_tants
 
         public int album_id { get; set; }
         public string album_name { get; set; }
-        public int artist_id { get; set; } 
+        public int artist_id { get; set; }
         public int length { get; set; }
         public string artist_name
         {
@@ -63,13 +63,13 @@ namespace mu_tants
             }
         }
         public Nullable<int> label_id { get; set; }
-        public string label_name 
+        public string label_name
         {
             get
             {
                 var labels = App.Context.Labels.ToList();
                 var label = labels.Where(a => a.label_id == label_id).FirstOrDefault();
-                return label.name;
+                return label.label_name;
             }
         }
         public Nullable<int> type_id { get; set; }

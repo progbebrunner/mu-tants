@@ -47,7 +47,7 @@ namespace mu_tants
         {
             var albums = App.Context.Albums.Where(a => a.album_id == album_id).ToList();
             int label = Int32.Parse(albums[0].label_id.ToString());
-            NavigationService.Navigate(new Recomendations(label));
+            NavigationService.Navigate(new Labels(label));
         }
     }
 }

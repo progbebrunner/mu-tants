@@ -12,7 +12,7 @@ namespace mu_tants
     using System;
     using System.IO;
     using System.Collections.Generic;
-    
+
     public partial class Artists
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -50,15 +50,15 @@ namespace mu_tants
             }
         }
         public string artist_info { get; set; }
-        public string new_info 
-        { 
-            get 
+        public string new_info
+        {
+            get
             {
                 string info = "\n" + artist_info;
                 return info;
-            } 
+            }
         }
-    
+
         public virtual Artists_To_Musicians Artists_To_Musicians { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }

@@ -76,9 +76,10 @@
             <PropertyRef Name="label_id" />
           </Key>
           <Property Name="label_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="label_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="location" Type="int" />
-          <Property Name="info" Type="nvarchar" MaxLength="1000" />
+          <Property Name="label_info" Type="nvarchar" MaxLength="1000" />
+          <Property Name="label_img" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="Musicians">
           <Key>
@@ -381,9 +382,10 @@
             <PropertyRef Name="label_id" />
           </Key>
           <Property Name="label_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="label_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="location" Type="Int32" />
-          <Property Name="info" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="label_info" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="label_img" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Labels" FromRole="Labels" ToRole="Albums" />
         </EntityType>
         <EntityType Name="Musicians">
@@ -632,9 +634,10 @@
             <EntityTypeMapping TypeName="MuModel.Labels">
               <MappingFragment StoreEntitySet="Labels">
                 <ScalarProperty Name="label_id" ColumnName="label_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="label_name" ColumnName="label_name" />
                 <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="label_info" ColumnName="label_info" />
+                <ScalarProperty Name="label_img" ColumnName="label_img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

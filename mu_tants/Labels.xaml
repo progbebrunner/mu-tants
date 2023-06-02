@@ -29,7 +29,7 @@
                             <Image x:Name="ImageService" Width="auto" Height="auto" Source="{Binding new_img}"/>
                             <ScrollViewer>
                                 <StackPanel Orientation="Vertical" Height="auto" Width="auto" MaxWidth="777">
-                                    <TextBlock Text="{Binding foundation_date}" Style="{StaticResource BlockCommon}" FontSize="25"></TextBlock>
+                                    <TextBlock Text="{Binding label_name}" Style="{StaticResource BlockCommon}" FontSize="25"></TextBlock>
                                     <TextBlock Text="{Binding artist_info}" Style="{StaticResource BlockCommon}" MaxWidth="555"></TextBlock>
                                 </StackPanel>
                             </ScrollViewer>

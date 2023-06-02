@@ -21,9 +21,10 @@ namespace mu_tants
         }
     
         public int label_id { get; set; }
-        public string name { get; set; }
+        public string label_name { get; set; }
         public Nullable<int> location { get; set; }
-        public string info { get; set; }
+        public string label_info { get; set; }
+        public string label_img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albums> Albums { get; set; }
