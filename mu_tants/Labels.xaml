@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:mu_tants"
       mc:Ignorable="d" 
       d:DesignHeight="675" d:DesignWidth="1000"
-      Title="Лейбл">
+      Title="Лейбл"
+      x:Name="LabelsPage">
 
     <Grid Background="{StaticResource ColorAccent}">
         <Grid.RowDefinitions>
@@ -26,11 +27,11 @@
                 <DataTemplate>
                     <Grid>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Height="250" Width="900">
-                            <Image x:Name="ImageService" Width="auto" Height="auto" Source="{Binding new_img}"/>
+                            <Image x:Name="ImageService" Width="auto" Height="auto" MaxHeight="225" MaxWidth="300" Source="{Binding new_img}"/>
                             <ScrollViewer>
-                                <StackPanel Orientation="Vertical" Height="auto" Width="auto" MaxWidth="777">
+                                <StackPanel Orientation="Vertical" Height="auto" Width="auto" MaxWidth="600">
                                     <TextBlock Text="{Binding label_name}" Style="{StaticResource BlockCommon}" FontSize="25"></TextBlock>
-                                    <TextBlock Text="{Binding artist_info}" Style="{StaticResource BlockCommon}" MaxWidth="555"></TextBlock>
+                                    <TextBlock Text="{Binding label_info}" Style="{StaticResource BlockCommon}" MaxWidth="555"></TextBlock>
                                 </StackPanel>
                             </ScrollViewer>
                         </StackPanel>

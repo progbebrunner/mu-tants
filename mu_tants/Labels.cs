@@ -10,6 +10,7 @@
 namespace mu_tants
 {
     using System;
+    using System.IO;
     using System.Collections.Generic;
     
     public partial class Labels
@@ -19,13 +20,29 @@ namespace mu_tants
         {
             this.Albums = new HashSet<Albums>();
         }
-    
+
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Labels\");
+
         public int label_id { get; set; }
         public string label_name { get; set; }
         public Nullable<int> location { get; set; }
         public string label_info { get; set; }
         public string label_img { get; set; }
-    
+        public string new_img
+        {
+            get
+            {
+                if (File.Exists(path + label_img))
+                {
+                    return path + label_img;
+                }
+                else
+                {
+                    return "just_img.png";
+                }
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albums> Albums { get; set; }
     }

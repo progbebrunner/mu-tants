@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="225"/>
-            <ColumnDefinition Width="225"/>
-            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Альбом </TextBlock>
@@ -28,7 +28,7 @@
                     <Grid>
                         <StackPanel Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <TextBlock  Width="auto" Text="{Binding artist_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <Button  Width="auto" Content="{Binding artist_name}" Click="ArtistButton_Click"/>
                             <TextBlock  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
                             <TextBlock  Width="auto" Text="{Binding length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
                             <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click"/>                            
@@ -43,7 +43,7 @@
                 <DataTemplate>
                     <Grid>
                         <StackPanel Orientation="Vertical" Height="auto" Width="auto">
-                            <Image x:Name="ImageService" Width="auto" Height="auto" Source="{Binding new_img}"/>
+                            <Image x:Name="ImageService" Width="auto" Height="auto" MaxHeight="350" MaxWidth="350" Source="{Binding new_img}"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

@@ -97,6 +97,9 @@
     <Compile Include="Genre.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HomeWindow.xaml.cs">
+      <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Labels.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Homepage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,9 +230,7 @@
   <ItemGroup>
     <Resource Include="Resources\just_img.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Labels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="mu.ico" />
     <Resource Include="Resources\vinyl_w_needle.png" />
@@ -328,6 +333,34 @@
       <DependentUpon>MuModel.edmx</DependentUpon>
       <LastGenOutput>MuModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Labels\afermath entertainment.png" />
+    <Resource Include="Resources\Labels\atlantic records.png" />
+    <Resource Include="Resources\Labels\capitol records.png" />
+    <Resource Include="Resources\Labels\captured tracks.png" />
+    <Resource Include="Resources\Labels\cotillion records.png" />
+    <Resource Include="Resources\Labels\creation records.png" />
+    <Resource Include="Resources\Labels\dgc records.png" />
+    <Resource Include="Resources\Labels\domino recording company.png" />
+    <Resource Include="Resources\Labels\emi records.png" />
+    <Resource Include="Resources\Labels\epic records.png" />
+    <Resource Include="Resources\Labels\fondle em records.png" />
+    <Resource Include="Resources\Labels\fools gold records.png" />
+    <Resource Include="Resources\Labels\harvest records.png" />
+    <Resource Include="Resources\Labels\interscope records.png" />
+    <Resource Include="Resources\Labels\kling klang studio.png" />
+    <Resource Include="Resources\Labels\laface records.png" />
+    <Resource Include="Resources\Labels\merge records.png" />
+    <Resource Include="Resources\Labels\mgm records.png" />
+    <Resource Include="Resources\Labels\modular recordings.png" />
+    <Resource Include="Resources\Labels\parlophone records.png" />
+    <Resource Include="Resources\Labels\r&amp;s records.png" />
+    <Resource Include="Resources\Labels\rca records.png" />
+    <Resource Include="Resources\Labels\sire records.png" />
+    <Resource Include="Resources\Labels\stones throw records.png" />
+    <Resource Include="Resources\Labels\verve records.png" />
+    <Resource Include="Resources\Labels\virgin records.png" />
+    <Resource Include="Resources\Labels\warner records.png" />
+    <Resource Include="Resources\Labels\самиздат.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

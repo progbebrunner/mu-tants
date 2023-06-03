@@ -49,5 +49,12 @@ namespace mu_tants
             int label = Int32.Parse(albums[0].label_id.ToString());
             NavigationService.Navigate(new Labels(label));
         }
+
+        private void ArtistButton_Click(object sender, RoutedEventArgs e)
+        {
+            var albums = App.Context.Albums.Where(a => a.album_id == album_id).ToList();
+            int artist = Int32.Parse(albums[0].artist_id.ToString());
+            NavigationService.Navigate(new Artist(artist));
+        }
     }
 }

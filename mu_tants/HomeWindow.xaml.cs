@@ -10,43 +10,51 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace mu_tants
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для HomeWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomeWindow : Window
     {
         object frameContent = null;
-        
-        public MainWindow()
+
+        public HomeWindow()
         {
             InitializeComponent();
-            FrameMain.Navigate(new HomeWindow());
+            FrameHome.Navigate(new Homepage());
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (FrameMain.CanGoBack)
-                FrameMain.GoBack();
+            if (FrameHome.CanGoBack)
+                FrameHome.GoBack();
         }
 
         private void FrameMain_ContentRendered(object sender, EventArgs e)
         {
-            
+            if (FrameHome.Content != frameContent)
+            {
+                if (App.CurrentUser != null)
+                    TBlockUsername.Text = App.CurrentUser.login;
+                else TBlockUsername.Text = "Гость";
+            }
+            else
+            {
+                TBlockUsername.Text = String.Empty;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            frameContent = FrameMain.Content;
+            frameContent = FrameHome.Content;
         }
 
         private void Image_Click(object sender, RoutedEventArgs e)
         {
-            FrameMain.Navigate(new Authorization());
+            FrameHome.Navigate(new Homepage());
         }
     }
 }

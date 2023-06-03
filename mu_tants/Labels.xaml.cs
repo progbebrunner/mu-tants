@@ -38,7 +38,7 @@ namespace mu_tants
 
         public void AlbumsLoad(int x)
         {
-            var albums = App.Context.Albums.Where(a => a.artist_id == x).ToList();
+            var albums = App.Context.Albums.Where(a => a.label_id == x).ToList();
             switch (ComboSortBy.SelectedIndex)
             {
                 case 0:
