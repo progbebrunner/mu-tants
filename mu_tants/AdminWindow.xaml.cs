@@ -10,46 +10,51 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace mu_tants
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AdminWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AdminWindow : Window
     {
         object frameContent = null;
-        
-        public MainWindow()
+
+        public AdminWindow()
         {
             InitializeComponent();
-            FrameMain.Navigate(new Authorization());
+            FrameAdmin.Navigate(new Homepage());
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            if (FrameMain.CanGoBack && MessageBox.Show($"Вы уверены, что хотите вернуться?\nНесохраненные данные могут быть утеряны",
-                "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
-                FrameMain.GoBack();
+            if (FrameAdmin.CanGoBack)
+                FrameAdmin.GoBack();
         }
 
         private void FrameMain_ContentRendered(object sender, EventArgs e)
         {
-            if (FrameMain.Content.ToString() == "mu_tants.Registration")
+            if (FrameAdmin.Content != frameContent)
             {
-                BtnBack.Visibility = Visibility.Visible;
+                if (App.CurrentUser != null)
+                    TBlockUsername.Text = App.CurrentUser.login;
+                else TBlockUsername.Text = "Гость";
             }
             else
             {
-                BtnBack.Visibility = Visibility.Hidden;
+                TBlockUsername.Text = String.Empty;
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            frameContent = FrameMain.Content;
+            frameContent = FrameAdmin.Content;
+        }
+
+        private void Image_Click(object sender, RoutedEventArgs e)
+        {
+            FrameAdmin.Navigate(new Homepage());
         }
     }
 }
