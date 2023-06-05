@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mu_tants"
         mc:Ignorable="d"
-        Title="/mu/tants" Height="800" Width="1200" MinHeight="450" MinWidth="900" Loaded="Window_Loaded">    
+        Title="/mu/tants" Height="800" Width="1200" MinHeight="450" MinWidth="900" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -14,13 +14,23 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource ColorSecondary}"></Grid>
         <Grid Grid.Row="1" Background="{StaticResource ColorAccent}"></Grid>
-        
+
         <Image Source="/Resources/vinyl.png" MouseDown="Image_Click" HorizontalAlignment="Left"></Image>
-        <Image Source="/Resources/vinyl_w_needle.png" HorizontalAlignment="Right"></Image>
-        <TextBlock Style="{StaticResource BlockCommon}" Margin="0 0 100 0" Name="TBlockUsername" HorizontalAlignment="Right" Width="200" Visibility="Hidden" ></TextBlock>
+        <Ellipse Name="UserPhoto" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Width="70" Height="70" StrokeThickness="1" Stroke="{StaticResource ColorAccent}" HorizontalAlignment="Right" Margin="15 0 0 0">
+            <Ellipse.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Профиль" Click="profileBtn_Click"/>
+                    <MenuItem Header="Выход" Foreground="#FFC83232" Click="exitBtn_Click"/>
+                </ContextMenu>
+            </Ellipse.ContextMenu>
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="Resources\just_img.png" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock Style="{StaticResource BlockCommon}" Margin="0 0 100 0" Name="TBlockUsername" HorizontalAlignment="Right" Width="200" Visibility="Hidden" Text="kjbdsvsajkb"></TextBlock>
         <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=FrameAdmin, Path=Content.Title}" HorizontalAlignment="Center"/>
         <Frame Name="FrameAdmin" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="FrameMain_ContentRendered" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
+
         <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}">
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="2">
                 <Button Content="Исполнители" Name="BtnArtists" Click="BtnArtists_Click"></Button>

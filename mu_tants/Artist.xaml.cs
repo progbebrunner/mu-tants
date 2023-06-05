@@ -34,6 +34,7 @@ namespace mu_tants
         {
             var artist = App.Context.Artists.Where(a => a.artist_id == x).ToList();
             ArtistInfo.ItemsSource = artist;
+            this.Title = artist.FirstOrDefault().artist_name;
         }
 
         public void AlbumsLoad(int x)

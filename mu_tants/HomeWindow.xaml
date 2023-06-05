@@ -16,7 +16,17 @@
         <Grid Grid.Row="1" Background="{StaticResource ColorAccent}"></Grid>
         <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}"></Grid>
         <Image Source="/Resources/vinyl.png" MouseDown="Image_Click" HorizontalAlignment="Left"></Image>
-        <Image Source="/Resources/vinyl_w_needle.png" HorizontalAlignment="Right"></Image>
+        <Ellipse Name="UserPhoto" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Width="70" Height="70" StrokeThickness="1" Stroke="{StaticResource ColorAccent}" HorizontalAlignment="Right" Margin="15 0 0 0">
+            <Ellipse.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Профиль" Click="profileBtn_Click"/>
+                    <MenuItem Header="Выход" Foreground="#FFC83232" Click="exitBtn_Click"/>
+                </ContextMenu>
+            </Ellipse.ContextMenu>
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="Resources\just_img.png" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
         <TextBlock Style="{StaticResource BlockCommon}" Margin="0 0 100 0" Name="TBlockUsername" HorizontalAlignment="Right" Width="200" Visibility="Hidden" ></TextBlock>
         <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=FrameHome, Path=Content.Title}" HorizontalAlignment="Center"/>
         <Frame Name="FrameHome" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="FrameMain_ContentRendered" HorizontalAlignment="Center" VerticalAlignment="Center"/>

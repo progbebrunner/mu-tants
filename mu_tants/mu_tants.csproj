@@ -73,6 +73,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminAlbums.xaml.cs">
+      <DependentUpon>AdminAlbums.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminArtists.xaml.cs">
+      <DependentUpon>AdminArtists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLabels.xaml.cs">
+      <DependentUpon>AdminLabels.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Album.xaml.cs">
       <DependentUpon>Album.xaml</DependentUpon>
     </Compile>
@@ -139,6 +151,22 @@
     <Compile Include="Users.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AdminAlbums.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminArtists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminLabels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Album.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -333,6 +361,8 @@
       <DependentUpon>MuModel.edmx</DependentUpon>
       <LastGenOutput>MuModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Users\1.png" />
+    <Resource Include="Resources\Users\admin.png" />
     <Resource Include="Resources\Labels\afermath entertainment.png" />
     <Resource Include="Resources\Labels\atlantic records.png" />
     <Resource Include="Resources\Labels\capitol records.png" />

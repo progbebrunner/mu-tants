@@ -23,7 +23,7 @@ namespace mu_tants
     /// </summary>
     public partial class Authorization : Page
     {
-        SqlConnection myConnection = new SqlConnection("Server = localhost\\SQLEXPRESS; database = mu-tants; Integrated Security=True; TrustServerCertificate = True");      
+        SqlConnection myConnection = new SqlConnection("Server =(localdb)\\MSSQLLocaldb; database = mu-tants; Integrated Security=True; TrustServerCertificate = True");      
 
 
         public Authorization()
@@ -38,7 +38,7 @@ namespace mu_tants
                 string login = txtLogin.Text.ToString();
                 string password = txtPwd.Password.ToString();
                 myConnection.Open();
-                string loginquery = $"select login, password from Users where Login = '{login}';";
+                string loginquery = $"select login, password, role from Users where Login = '{login}';";
                 SqlDataAdapter adpt = new SqlDataAdapter(loginquery, myConnection);
                 DataTable table = new DataTable();
                 adpt.Fill(table);
@@ -48,6 +48,26 @@ namespace mu_tants
                 {
                     if (table.Rows[0][1].ToString() == password)
                     {
+
+                        if (table.Rows[0][2].ToString() == "1")
+                        {
+                            AdminWindow adminWindow = new AdminWindow(table.Rows[0][0].ToString());
+                            adminWindow.Show();
+                        }
+                        else
+                        {
+                            if (table.Rows[0][2].ToString().Trim() == "")
+                            {
+                                HomeWindow homeWindow = new HomeWindow("2");
+                                homeWindow.Show();
+                            }
+                            else
+                            {
+                                HomeWindow homeWindow = new HomeWindow(table.Rows[0][0].ToString());
+                                homeWindow.Show();
+                            }
+                        }
+                        Window.GetWindow(this).Close();
                         NavigationService.Navigate(new Homepage());
                     }
                     else

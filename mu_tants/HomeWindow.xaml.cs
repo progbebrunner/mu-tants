@@ -10,7 +10,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.IO;
+using System.Net.NetworkInformation;
 
 namespace mu_tants
 {
@@ -20,10 +21,14 @@ namespace mu_tants
     public partial class HomeWindow : Window
     {
         object frameContent = null;
+        string user_login;
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Users\");
 
-        public HomeWindow()
+
+        public HomeWindow(string x)
         {
             InitializeComponent();
+            user_login = x;
             FrameHome.Navigate(new Homepage());
         }
 
@@ -49,10 +54,33 @@ namespace mu_tants
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            frameContent = FrameHome.Content;
+            var users = App.Context.Users.ToList();
+            var currentUser = users.Where(u => u.login == user_login).FirstOrDefault();
+            var img = currentUser.user_img;
+            if (currentUser.user_img == null)
+            {
+                img = "default_ava.png";
+            }
+            var profilePic = new BitmapImage(new Uri(path + img, UriKind.Relative));
+            (UserPhoto.Fill as ImageBrush).ImageSource = profilePic;
+            TBlockUsername.Text = currentUser.login;
         }
 
         private void Image_Click(object sender, RoutedEventArgs e)
+        {
+            FrameHome.Navigate(new Homepage());
+        }
+        private void Ellipse_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
+            //FrameMain.Navigate(new MainPage(currentUserId));
+        }
+        private void exitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Window.GetWindow(this).Close();
+        }
+        private void profileBtn_Click(object sender, RoutedEventArgs e)
         {
             FrameHome.Navigate(new Homepage());
         }
