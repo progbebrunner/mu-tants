@@ -21,8 +21,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
             <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged" Background="{StaticResource ColorSecondary}">
-                <ComboBoxItem Content="Артист: А - Я"></ComboBoxItem>
-                <ComboBoxItem Content="Артист: Я - А"></ComboBoxItem>
+                <ComboBoxItem Content="Лейбл: А - Я"></ComboBoxItem>
+                <ComboBoxItem Content="Лейбл: Я - А"></ComboBoxItem>
             </ComboBox>
             <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
 

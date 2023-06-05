@@ -291,7 +291,6 @@
     <Resource Include="Resources\Artists\the velvet underground.png" />
     <Resource Include="Resources\Artists\weezer.png" />
     <Resource Include="Resources\Albums\animal collective merriweather post pavilion.png" />
-    <Resource Include="Resources\Albums\aphex twin selected ambient works 85-92.png" />
     <Resource Include="Resources\Albums\beach boys pet sounds.png" />
     <Resource Include="Resources\Albums\daft punk discovery.png" />
     <Resource Include="Resources\Albums\danny brown atrocity exhibition.png" />
@@ -361,6 +360,7 @@
       <DependentUpon>MuModel.edmx</DependentUpon>
       <LastGenOutput>MuModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Albums\aphex twin selected ambent works.png" />
     <Resource Include="Resources\Users\1.png" />
     <Resource Include="Resources\Users\admin.png" />
     <Resource Include="Resources\Labels\afermath entertainment.png" />
