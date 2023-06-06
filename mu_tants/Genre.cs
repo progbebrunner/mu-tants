@@ -18,7 +18,6 @@ namespace mu_tants
         public Genre()
         {
             this.Albums = new HashSet<Albums>();
-            this.Artists = new HashSet<Artists>();
         }
     
         public int genre_id { get; set; }
@@ -26,7 +25,5 @@ namespace mu_tants
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albums> Albums { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artists> Artists { get; set; }
     }
 }

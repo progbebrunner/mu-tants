@@ -20,12 +20,13 @@ namespace mu_tants
     /// </summary>
     public partial class AdminArtists : Page
     {
+        public int artist_id;
         public AdminArtists()
         {
             InitializeComponent();
-            AlbumsLoad();
+            ArtistsLoad();
         }
-        public void AlbumsLoad()
+        public void ArtistsLoad()
         {
             var artists = App.Context.Artists.ToList();
             switch (ComboSortBy.SelectedIndex)
@@ -51,19 +52,19 @@ namespace mu_tants
 
         private void ComboSortBy_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            AlbumsLoad();
+            ArtistsLoad();
         }
         private void TBoxSearch_TextChanged(object sender, RoutedEventArgs e)
         {
             txtError.Text = null;
-            AlbumsLoad();
+            ArtistsLoad();
         }
 
         private void ArtistButton_Click(object sender, RoutedEventArgs e)
         {
             string artist_name = (sender as Button).Content.ToString();
             var artist = App.Context.Artists.Where(x => x.artist_name == artist_name).ToList();
-            int artist_id = artist[0].artist_id;
+            artist_id = artist[0].artist_id;
             NavigationService.Navigate(new Artist(artist_id));
         }
 
@@ -74,7 +75,16 @@ namespace mu_tants
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var artists = App.Context.Artists.ToList();
+            var currentArtist = artists.Where(u => u.artist_id == artist_id).FirstOrDefault();
+            if (MessageBox.Show($"Вы точно хотите удалить исполнителя?",
+                "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                App.Context.Artists.Remove(currentArtist);
+                App.Context.SaveChanges();
+                ArtistsLoad();
+                MessageBox.Show("Исполнитель был удален", "Внимание");
+            }
         }
     }
 }

@@ -76,6 +76,9 @@
     <Compile Include="AdminAlbums.xaml.cs">
       <DependentUpon>AdminAlbums.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminAlbumsAddEdit.xaml.cs">
+      <DependentUpon>AdminAlbumsAddEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminArtists.xaml.cs">
       <DependentUpon>AdminArtists.xaml</DependentUpon>
     </Compile>
@@ -95,9 +98,6 @@
       <DependentUpon>Artist.xaml</DependentUpon>
     </Compile>
     <Compile Include="Artists.cs">
-      <DependentUpon>MuModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Artists_To_Musicians.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Authorization.xaml.cs">
@@ -133,9 +133,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MuModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Musicians.cs">
-      <DependentUpon>MuModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Recomendations.xaml.cs">
       <DependentUpon>Recomendations.xaml</DependentUpon>
     </Compile>
@@ -152,6 +149,10 @@
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Page Include="AdminAlbums.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminAlbumsAddEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +246,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Притчин 50-02. УП РПМ 01.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -258,7 +260,18 @@
   <ItemGroup>
     <Resource Include="Resources\just_img.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MuModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuModel.edmx</DependentUpon>
+      <LastGenOutput>MuModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MuModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuModel.edmx</DependentUpon>
+      <LastGenOutput>MuModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="mu.ico" />
     <Resource Include="Resources\vinyl_w_needle.png" />
@@ -350,16 +363,6 @@
     <Resource Include="Resources\Users\david.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MuModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MuModel.edmx</DependentUpon>
-      <LastGenOutput>MuModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="MuModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MuModel.edmx</DependentUpon>
-      <LastGenOutput>MuModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\Albums\aphex twin selected ambent works.png" />
     <Resource Include="Resources\Users\1.png" />
     <Resource Include="Resources\Users\admin.png" />

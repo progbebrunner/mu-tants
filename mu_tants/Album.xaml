@@ -19,6 +19,7 @@
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Исполнитель </TextBlock>
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Дата выпуска </TextBlock>
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Длительность </TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Жанр </TextBlock>
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Лэйбл </TextBlock>
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Список </TextBlock>
         </StackPanel>
@@ -28,11 +29,12 @@
                     <Grid>
                         <StackPanel Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <Button  Width="auto" Content="{Binding artist_name}" Click="ArtistButton_Click"/>
+                            <Button  Width="auto" Content="{Binding artist_name}" Click="ArtistButton_Click" FontSize="20"/>
                             <TextBlock  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
                             <TextBlock  Width="auto" Text="{Binding length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click"/>                            
-                            <Button  Width="auto" Content="{Binding type_name}" Click="TypeButton_Click"/>                            
+                            <TextBlock  Width="auto" Text="{Binding genre}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click" FontSize="20"/>
+                            <Button  Width="auto" Content="{Binding type_name}" Click="TypeButton_Click" FontSize="20"/>                            
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

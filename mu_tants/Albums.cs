@@ -62,6 +62,16 @@ namespace mu_tants
                 return release_date.Value.Date.ToString();
             }
         }
+        public Nullable<int> genre_id{get; set;}
+        public string genre
+        {
+            get
+            {
+                var genres = App.Context.Genre.ToList();
+                var genre = genres.Where(a => a.genre_id == genre_id).FirstOrDefault();
+                return genre.info;
+            }
+        }
         public Nullable<int> label_id { get; set; }
         public string label_name
         {

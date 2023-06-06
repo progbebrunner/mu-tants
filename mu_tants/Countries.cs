@@ -14,7 +14,16 @@ namespace mu_tants
     
     public partial class Countries
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Countries()
+        {
+            this.Labels = new HashSet<Labels>();
+        }
+    
         public int country_id { get; set; }
         public string country_name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Labels> Labels { get; set; }
     }
 }

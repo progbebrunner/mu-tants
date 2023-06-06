@@ -30,10 +30,8 @@ namespace mu_tants
         public virtual DbSet<Countries> Countries { get; set; }
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<Labels> Labels { get; set; }
-        public virtual DbSet<Musicians> Musicians { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Types> Types { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Artists_To_Musicians> Artists_To_Musicians { get; set; }
     }
 }

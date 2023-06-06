@@ -12,7 +12,7 @@ namespace mu_tants
     using System;
     using System.IO;
     using System.Collections.Generic;
-    
+
     public partial class Labels
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -45,5 +45,6 @@ namespace mu_tants
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albums> Albums { get; set; }
+        public virtual ICollection<Countries> Countries { get; set; }
     }
 }

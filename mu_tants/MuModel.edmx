@@ -15,18 +15,9 @@
           <Property Name="artist_id" Type="int" Nullable="false" />
           <Property Name="length" Type="int" />
           <Property Name="release_date" Type="date" />
+          <Property Name="genre_id" Type="int" />
           <Property Name="label_id" Type="int" />
           <Property Name="type_id" Type="int" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "mu-tants.dbo.Albums_To_Genres" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Albums_To_Genres">
-          <Key>
-            <PropertyRef Name="album_id" />
-            <PropertyRef Name="genre_id" />
-          </Key>
-          <Property Name="album_id" Type="int" Nullable="false" />
-          <Property Name="genre_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Artists">
           <Key>
@@ -37,25 +28,6 @@
           <Property Name="foundation" Type="date" />
           <Property Name="artist_img" Type="nvarchar" MaxLength="50" />
           <Property Name="artist_info" Type="nvarchar" MaxLength="1000" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "mu-tants.dbo.Artists_To_Genres" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Artists_To_Genres">
-          <Key>
-            <PropertyRef Name="artist_id" />
-            <PropertyRef Name="genre_id" />
-          </Key>
-          <Property Name="artist_id" Type="int" Nullable="false" />
-          <Property Name="genre_id" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "mu-tants.dbo.Artists_To_Musicians" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Artists_To_Musicians">
-          <Key>
-            <PropertyRef Name="artist_id" />
-          </Key>
-          <Property Name="artist_id" Type="int" Nullable="false" />
-          <Property Name="musician_id" Type="int" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
@@ -78,18 +50,8 @@
           <Property Name="label_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="label_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="location" Type="int" />
-          <Property Name="label_info" Type="nvarchar" MaxLength="1000" />
+          <Property Name="label_info" Type="nvarchar" MaxLength="3000" />
           <Property Name="label_img" Type="nvarchar" MaxLength="300" />
-        </EntityType>
-        <EntityType Name="Musicians">
-          <Key>
-            <PropertyRef Name="musician_id" />
-          </Key>
-          <Property Name="musician_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="mus_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="mus_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="birthday" Type="date" />
-          <Property Name="info" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -121,6 +83,18 @@
           <Property Name="fav_artist" Type="int" />
           <Property Name="fav_album" Type="int" />
         </EntityType>
+        <Association Name="FK_Albums_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="genre_id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Albums_Labels">
           <End Role="Labels" Type="Self.Labels" Multiplicity="0..1" />
           <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
@@ -130,30 +104,6 @@
             </Principal>
             <Dependent Role="Albums">
               <PropertyRef Name="label_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Albums_To_Genres_Albums">
-          <End Role="Albums" Type="Self.Albums" Multiplicity="1" />
-          <End Role="Albums_To_Genres" Type="Self.Albums_To_Genres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Albums">
-              <PropertyRef Name="album_id" />
-            </Principal>
-            <Dependent Role="Albums_To_Genres">
-              <PropertyRef Name="album_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Albums_To_Genres_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
-          <End Role="Albums_To_Genres" Type="Self.Albums_To_Genres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genre">
-              <PropertyRef Name="genre_id" />
-            </Principal>
-            <Dependent Role="Albums_To_Genres">
-              <PropertyRef Name="genre_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -169,51 +119,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Artists_To_Genres_Artists">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="1" />
-          <End Role="Artists_To_Genres" Type="Self.Artists_To_Genres" Multiplicity="*" />
+        <Association Name="FK_Labels_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="Labels" Type="Self.Labels" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Artists">
-              <PropertyRef Name="artist_id" />
+            <Principal Role="Countries">
+              <PropertyRef Name="country_id" />
             </Principal>
-            <Dependent Role="Artists_To_Genres">
-              <PropertyRef Name="artist_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Artists_To_Genres_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
-          <End Role="Artists_To_Genres" Type="Self.Artists_To_Genres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genre">
-              <PropertyRef Name="genre_id" />
-            </Principal>
-            <Dependent Role="Artists_To_Genres">
-              <PropertyRef Name="genre_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Artists_To_Musicians_Artists">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="1" />
-          <End Role="Artists_To_Musicians" Type="Self.Artists_To_Musicians" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Artists">
-              <PropertyRef Name="artist_id" />
-            </Principal>
-            <Dependent Role="Artists_To_Musicians">
-              <PropertyRef Name="artist_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Artists_To_Musicians_Musicians">
-          <End Role="Musicians" Type="Self.Musicians" Multiplicity="0..1" />
-          <End Role="Artists_To_Musicians" Type="Self.Artists_To_Musicians" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Musicians">
-              <PropertyRef Name="musician_id" />
-            </Principal>
-            <Dependent Role="Artists_To_Musicians">
-              <PropertyRef Name="musician_id" />
+            <Dependent Role="Labels">
+              <PropertyRef Name="location" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,59 +173,24 @@
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Labels" EntityType="Self.Labels" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Musicians" EntityType="Self.Musicians" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Albums_To_Genres" EntityType="Self.Albums_To_Genres" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Albums_To_Genres].[album_id] AS [album_id], 
-    [Albums_To_Genres].[genre_id] AS [genre_id]
-    FROM [dbo].[Albums_To_Genres] AS [Albums_To_Genres]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Artists_To_Genres" EntityType="Self.Artists_To_Genres" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Artists_To_Genres].[artist_id] AS [artist_id], 
-    [Artists_To_Genres].[genre_id] AS [genre_id]
-    FROM [dbo].[Artists_To_Genres] AS [Artists_To_Genres]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Artists_To_Musicians" EntityType="Self.Artists_To_Musicians" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Artists_To_Musicians].[artist_id] AS [artist_id], 
-    [Artists_To_Musicians].[musician_id] AS [musician_id]
-    FROM [dbo].[Artists_To_Musicians] AS [Artists_To_Musicians]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_Albums_Genre" Association="Self.FK_Albums_Genre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
           <AssociationSet Name="FK_Albums_Labels" Association="Self.FK_Albums_Labels">
             <End Role="Labels" EntitySet="Labels" />
             <End Role="Albums" EntitySet="Albums" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Albums_To_Genres_Albums" Association="Self.FK_Albums_To_Genres_Albums">
-            <End Role="Albums" EntitySet="Albums" />
-            <End Role="Albums_To_Genres" EntitySet="Albums_To_Genres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Albums_To_Genres_Genre" Association="Self.FK_Albums_To_Genres_Genre">
-            <End Role="Genre" EntitySet="Genre" />
-            <End Role="Albums_To_Genres" EntitySet="Albums_To_Genres" />
           </AssociationSet>
           <AssociationSet Name="FK_Albums_Types" Association="Self.FK_Albums_Types">
             <End Role="Types" EntitySet="Types" />
             <End Role="Albums" EntitySet="Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK_Artists_To_Genres_Artists" Association="Self.FK_Artists_To_Genres_Artists">
-            <End Role="Artists" EntitySet="Artists" />
-            <End Role="Artists_To_Genres" EntitySet="Artists_To_Genres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Artists_To_Genres_Genre" Association="Self.FK_Artists_To_Genres_Genre">
-            <End Role="Genre" EntitySet="Genre" />
-            <End Role="Artists_To_Genres" EntitySet="Artists_To_Genres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Artists_To_Musicians_Artists" Association="Self.FK_Artists_To_Musicians_Artists">
-            <End Role="Artists" EntitySet="Artists" />
-            <End Role="Artists_To_Musicians" EntitySet="Artists_To_Musicians" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Artists_To_Musicians_Musicians" Association="Self.FK_Artists_To_Musicians_Musicians">
-            <End Role="Musicians" EntitySet="Musicians" />
-            <End Role="Artists_To_Musicians" EntitySet="Artists_To_Musicians" />
+          <AssociationSet Name="FK_Labels_Countries" Association="Self.FK_Labels_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Labels" EntitySet="Labels" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Albums" Association="Self.FK_Users_Albums">
             <End Role="Albums" EntitySet="Albums" />
@@ -341,12 +220,13 @@
           <Property Name="artist_id" Type="Int32" Nullable="false" />
           <Property Name="length" Type="Int32" />
           <Property Name="release_date" Type="DateTime" Precision="0" />
+          <Property Name="genre_id" Type="Int32" />
           <Property Name="label_id" Type="Int32" />
           <Property Name="type_id" Type="Int32" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_Albums_Genre" FromRole="Albums" ToRole="Genre" />
           <NavigationProperty Name="Labels" Relationship="Self.FK_Albums_Labels" FromRole="Albums" ToRole="Labels" />
           <NavigationProperty Name="Types" Relationship="Self.FK_Albums_Types" FromRole="Albums" ToRole="Types" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Albums" FromRole="Albums" ToRole="Users" />
-          <NavigationProperty Name="Genre" Relationship="Self.Albums_To_Genres" FromRole="Albums" ToRole="Genre" />
         </EntityType>
         <EntityType Name="Artists">
           <Key>
@@ -357,9 +237,7 @@
           <Property Name="foundation" Type="DateTime" Precision="0" />
           <Property Name="artist_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="artist_info" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Artists_To_Musicians" Relationship="Self.FK_Artists_To_Musicians_Artists" FromRole="Artists" ToRole="Artists_To_Musicians" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Artists" FromRole="Artists" ToRole="Users" />
-          <NavigationProperty Name="Genre" Relationship="Self.Artists_To_Genres" FromRole="Artists" ToRole="Genre" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
@@ -367,6 +245,7 @@
           </Key>
           <Property Name="country_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="country_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Labels" Relationship="Self.FK_Labels_Countries" FromRole="Countries" ToRole="Labels" />
         </EntityType>
         <EntityType Name="Genre">
           <Key>
@@ -374,8 +253,7 @@
           </Key>
           <Property Name="genre_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="info" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Albums" Relationship="Self.Albums_To_Genres" FromRole="Genre" ToRole="Albums" />
-          <NavigationProperty Name="Artists" Relationship="Self.Artists_To_Genres" FromRole="Genre" ToRole="Artists" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Genre" FromRole="Genre" ToRole="Albums" />
         </EntityType>
         <EntityType Name="Labels">
           <Key>
@@ -384,20 +262,10 @@
           <Property Name="label_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="label_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="location" Type="Int32" />
-          <Property Name="label_info" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="label_info" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="label_img" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Labels" FromRole="Labels" ToRole="Albums" />
-        </EntityType>
-        <EntityType Name="Musicians">
-          <Key>
-            <PropertyRef Name="musician_id" />
-          </Key>
-          <Property Name="musician_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="mus_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="mus_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="birthday" Type="DateTime" Precision="0" />
-          <Property Name="info" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Artists_To_Musicians" Relationship="Self.FK_Artists_To_Musicians_Musicians" FromRole="Musicians" ToRole="Artists_To_Musicians" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_Labels_Countries" FromRole="Labels" ToRole="Countries" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -434,15 +302,18 @@
           <NavigationProperty Name="Artists" Relationship="Self.FK_Users_Artists" FromRole="Users" ToRole="Artists" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
-        <EntityType Name="Artists_To_Musicians">
-          <Key>
-            <PropertyRef Name="artist_id" />
-          </Key>
-          <Property Name="artist_id" Type="Int32" Nullable="false" />
-          <Property Name="musician_id" Type="Int32" />
-          <NavigationProperty Name="Artists" Relationship="Self.FK_Artists_To_Musicians_Artists" FromRole="Artists_To_Musicians" ToRole="Artists" />
-          <NavigationProperty Name="Musicians" Relationship="Self.FK_Artists_To_Musicians_Musicians" FromRole="Artists_To_Musicians" ToRole="Musicians" />
-        </EntityType>
+        <Association Name="FK_Albums_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="genre_id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="genre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Albums_Labels">
           <End Role="Labels" Type="Self.Labels" Multiplicity="0..1" />
           <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
@@ -479,18 +350,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Artists_To_Musicians_Artists">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="1" />
-          <End Role="Artists_To_Musicians" Type="Self.Artists_To_Musicians" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Artists">
-              <PropertyRef Name="artist_id" />
-            </Principal>
-            <Dependent Role="Artists_To_Musicians">
-              <PropertyRef Name="artist_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Users_Artists">
           <End Role="Artists" Type="Self.Artists" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -503,15 +362,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Artists_To_Musicians_Musicians">
-          <End Role="Musicians" Type="Self.Musicians" Multiplicity="0..1" />
-          <End Role="Artists_To_Musicians" Type="Self.Artists_To_Musicians" Multiplicity="*" />
+        <Association Name="FK_Labels_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="Labels" Type="Self.Labels" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Musicians">
-              <PropertyRef Name="musician_id" />
+            <Principal Role="Countries">
+              <PropertyRef Name="country_id" />
             </Principal>
-            <Dependent Role="Artists_To_Musicians">
-              <PropertyRef Name="musician_id" />
+            <Dependent Role="Labels">
+              <PropertyRef Name="location" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -527,25 +386,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Albums_To_Genres">
-          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
-          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
-        </Association>
-        <Association Name="Artists_To_Genres">
-          <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
-          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="MuEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Albums" EntityType="Self.Albums" />
           <EntitySet Name="Artists" EntityType="Self.Artists" />
           <EntitySet Name="Countries" EntityType="Self.Countries" />
           <EntitySet Name="Genre" EntityType="Self.Genre" />
           <EntitySet Name="Labels" EntityType="Self.Labels" />
-          <EntitySet Name="Musicians" EntityType="Self.Musicians" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="Artists_To_Musicians" EntityType="Self.Artists_To_Musicians" />
+          <AssociationSet Name="FK_Albums_Genre" Association="Self.FK_Albums_Genre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
           <AssociationSet Name="FK_Albums_Labels" Association="Self.FK_Albums_Labels">
             <End Role="Labels" EntitySet="Labels" />
             <End Role="Albums" EntitySet="Albums" />
@@ -558,29 +411,17 @@
             <End Role="Albums" EntitySet="Albums" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Artists_To_Musicians_Artists" Association="Self.FK_Artists_To_Musicians_Artists">
-            <End Role="Artists" EntitySet="Artists" />
-            <End Role="Artists_To_Musicians" EntitySet="Artists_To_Musicians" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_Artists" Association="Self.FK_Users_Artists">
             <End Role="Artists" EntitySet="Artists" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK_Artists_To_Musicians_Musicians" Association="Self.FK_Artists_To_Musicians_Musicians">
-            <End Role="Musicians" EntitySet="Musicians" />
-            <End Role="Artists_To_Musicians" EntitySet="Artists_To_Musicians" />
+          <AssociationSet Name="FK_Labels_Countries" Association="Self.FK_Labels_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Labels" EntitySet="Labels" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="Albums_To_Genres" Association="Self.Albums_To_Genres">
-            <End Role="Albums" EntitySet="Albums" />
-            <End Role="Genre" EntitySet="Genre" />
-          </AssociationSet>
-          <AssociationSet Name="Artists_To_Genres" Association="Self.Artists_To_Genres">
-            <End Role="Artists" EntitySet="Artists" />
-            <End Role="Genre" EntitySet="Genre" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -598,6 +439,7 @@
                 <ScalarProperty Name="artist_id" ColumnName="artist_id" />
                 <ScalarProperty Name="length" ColumnName="length" />
                 <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="genre_id" ColumnName="genre_id" />
                 <ScalarProperty Name="label_id" ColumnName="label_id" />
                 <ScalarProperty Name="type_id" ColumnName="type_id" />
               </MappingFragment>
@@ -641,17 +483,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Musicians">
-            <EntityTypeMapping TypeName="MuModel.Musicians">
-              <MappingFragment StoreEntitySet="Musicians">
-                <ScalarProperty Name="musician_id" ColumnName="musician_id" />
-                <ScalarProperty Name="mus_name" ColumnName="mus_name" />
-                <ScalarProperty Name="mus_surname" ColumnName="mus_surname" />
-                <ScalarProperty Name="birthday" ColumnName="birthday" />
-                <ScalarProperty Name="info" ColumnName="info" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="MuModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
@@ -685,30 +516,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Artists_To_Musicians">
-            <EntityTypeMapping TypeName="MuModel.Artists_To_Musicians">
-              <MappingFragment StoreEntitySet="Artists_To_Musicians">
-                <ScalarProperty Name="artist_id" ColumnName="artist_id" />
-                <ScalarProperty Name="musician_id" ColumnName="musician_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Albums_To_Genres" TypeName="MuModel.Albums_To_Genres" StoreEntitySet="Albums_To_Genres">
-            <EndProperty Name="Albums">
-              <ScalarProperty Name="album_id" ColumnName="album_id" />
-            </EndProperty>
-            <EndProperty Name="Genre">
-              <ScalarProperty Name="genre_id" ColumnName="genre_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Artists_To_Genres" TypeName="MuModel.Artists_To_Genres" StoreEntitySet="Artists_To_Genres">
-            <EndProperty Name="Artists">
-              <ScalarProperty Name="artist_id" ColumnName="artist_id" />
-            </EndProperty>
-            <EndProperty Name="Genre">
-              <ScalarProperty Name="genre_id" ColumnName="genre_id" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

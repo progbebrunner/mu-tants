@@ -20,6 +20,7 @@ namespace mu_tants
     /// </summary>
     public partial class AdminLabels : Page
     {
+        public int label_id;
         public AdminLabels()
         {
             InitializeComponent();
@@ -63,7 +64,7 @@ namespace mu_tants
         {
             string label_name = (sender as Button).Content.ToString();
             var artist = App.Context.Labels.Where(x => x.label_name == label_name).ToList();
-            int label_id = artist[0].label_id;
+            label_id = artist[0].label_id;
             NavigationService.Navigate(new Labels(label_id));
         }
 
@@ -74,7 +75,16 @@ namespace mu_tants
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var labels = App.Context.Labels.ToList();
+            var currentLabel = labels.Where(u => u.label_id == label_id).FirstOrDefault();
+            if (MessageBox.Show($"Вы точно хотите удалить лейбл?",
+                "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                App.Context.Labels.Remove(currentLabel);
+                App.Context.SaveChanges();
+                LabelsLoad();
+                MessageBox.Show("Лейбл был удален", "Внимание");
+            }
         }
     }
 }

@@ -1,0 +1,55 @@
+﻿<Page x:Class="mu_tants.AdminAlbumsAddEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mu_tants"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1000"
+      Title="AdminAlbumsAddEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Альбом</TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Исполнитель</TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Дата выпуска</TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Длительность</TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Лэйбл</TextBlock>
+            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Список</TextBlock>
+        </StackPanel>
+        <ListView x:Name="AlbumInfo" Grid.Column="1" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBox  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBox Width="auto" Text="{Binding artist_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBox  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBox  Width="auto" Text="{Binding length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBox  Width="auto" Text="{Binding label_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                            <TextBox  Width="auto" Text="{Binding type_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="AlbumImg" Grid.Column="2" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Vertical" Height="auto" Width="auto">
+                            <Image x:Name="ImageService" Width="auto" Height="auto" MaxHeight="350" MaxWidth="350" Source="{Binding new_img}"/>
+                            <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click" Width="auto" Padding="5px"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Column="1" x:Name="SaveButton" Content="Сохранить"  Click="SaveButton_Click" Width="auto" Padding="5px" VerticalAlignment="Bottom" Margin="10px"/>
+    </Grid>
+</Page>
