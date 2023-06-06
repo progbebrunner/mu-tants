@@ -16,6 +16,7 @@
         <Grid Grid.Row="1" Background="{StaticResource ColorAccent}"></Grid>
         <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}"></Grid>
         <Image Source="/Resources/vinyl.png" HorizontalAlignment="Left"></Image>
+        <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=FrameMain, Path=Content.Title}" HorizontalAlignment="Center"/>
         <Frame Name="FrameMain" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="FrameMain_ContentRendered" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button Content="назад" HorizontalAlignment="Center" Name="BtnBack" Click="BtnBack_Click" Grid.Row="2"></Button>
     </Grid>

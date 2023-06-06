@@ -81,7 +81,7 @@ namespace mu_tants
         }
         private void profileBtn_Click(object sender, RoutedEventArgs e)
         {
-            FrameAdmin.Navigate(new Homepage());
+            FrameAdmin.Navigate(new Profile(user_login));
         }
 
 
