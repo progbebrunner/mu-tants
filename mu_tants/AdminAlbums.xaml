@@ -27,7 +27,7 @@
                 <ComboBoxItem Content="Альбом: Я - А"></ComboBoxItem>
             </ComboBox>
             <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
-
+            <Button x:Name="AddButton" Content="Добавить" Click="AddButton_Click" Width="auto" Padding="5px"/>
         </StackPanel>
         <ListView x:Name="LVAlbums" Grid.Row="1" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
             <ListView.ItemTemplate>

@@ -106,7 +106,7 @@
     <Compile Include="Countries.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Genre.cs">
+    <Compile Include="Genres.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HomeWindow.xaml.cs">
@@ -143,6 +143,9 @@
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
+      <DependentUpon>MuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Types.cs">
@@ -268,18 +271,6 @@
     <Resource Include="Resources\just_img.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MuModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MuModel.edmx</DependentUpon>
-      <LastGenOutput>MuModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="MuModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MuModel.edmx</DependentUpon>
-      <LastGenOutput>MuModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="mu.ico" />
     <Resource Include="Resources\vinyl_w_needle.png" />
   </ItemGroup>
@@ -401,6 +392,18 @@
     <Resource Include="Resources\Labels\virgin records.png" />
     <Resource Include="Resources\Labels\warner records.png" />
     <Resource Include="Resources\Labels\самиздат.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MuModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuModel.edmx</DependentUpon>
+      <LastGenOutput>MuModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MuModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MuModel.edmx</DependentUpon>
+      <LastGenOutput>MuModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

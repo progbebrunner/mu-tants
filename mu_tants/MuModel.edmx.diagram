@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a420279e28004d83aaf0af5399e5e515" Name="Diagram1">
+      <Diagram DiagramId="25690c42229d4507a02a628f4fa6f581" Name="Diagram1">
         <EntityTypeShape EntityType="MuModel.Albums" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MuModel.Artists" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MuModel.Countries" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuModel.Genre" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuModel.Genres" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MuModel.Labels" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MuModel.Roles" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MuModel.Types" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MuModel.Users" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="MuModel.FK_Albums_Genre" ManuallyRouted="false" />

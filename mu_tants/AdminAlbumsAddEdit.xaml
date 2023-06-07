@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:mu_tants"
       mc:Ignorable="d" 
       d:DesignHeight="675" d:DesignWidth="1000"
-      Title="AdminAlbumsAddEdit">
+      Title="Альбом">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,22 +22,15 @@
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Лэйбл</TextBlock>
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Список</TextBlock>
         </StackPanel>
-        <ListView x:Name="AlbumInfo" Grid.Column="1" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <StackPanel Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBox  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <TextBox Width="auto" Text="{Binding artist_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <TextBox  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <TextBox  Width="auto" Text="{Binding length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <TextBox  Width="auto" Text="{Binding label_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                            <TextBox  Width="auto" Text="{Binding type_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="20"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel Grid.Column="1" Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox Width="auto" Name="AlbumName"  FontSize="20"/>
+            <TextBox Width="auto" Name="ArtistName" FontSize="20"/>
+            <TextBox Width="auto" Name="ReleaseDate" FontSize="20"/>
+            <TextBox Width="auto" Name="Length" FontSize="20"/>
+            <TextBox Width="auto" Name="LabelName" FontSize="20"/>
+            <TextBox Width="auto" Name="Type" FontSize="20"/>
+        </StackPanel>
+
         <ListView x:Name="AlbumImg" Grid.Column="2" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center">
             <ListView.ItemTemplate>
                 <DataTemplate>

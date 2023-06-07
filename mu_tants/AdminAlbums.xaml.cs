@@ -82,6 +82,10 @@ namespace mu_tants
             int album_id = albums[0].album_id;
             NavigationService.Navigate(new Album(album_id));
         }
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AdminAlbumsAddEdit(album_id));
+        }
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -100,6 +104,6 @@ namespace mu_tants
                 AlbumsLoad();
                 MessageBox.Show("Альбом был удален", "Внимание");
             }
-        }
+        }        
     }
 }

@@ -36,12 +36,12 @@
           <Property Name="country_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="country_name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Genre">
+        <EntityType Name="Genres">
           <Key>
             <PropertyRef Name="genre_id" />
           </Key>
           <Property Name="genre_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="info" Type="nvarchar" MaxLength="300" />
+          <Property Name="name" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="Labels">
           <Key>
@@ -59,6 +59,16 @@
           </Key>
           <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Types">
           <Key>
@@ -84,10 +94,10 @@
           <Property Name="fav_album" Type="int" />
         </EntityType>
         <Association Name="FK_Albums_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Genres" Type="Self.Genres" Multiplicity="0..1" />
           <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genre">
+            <Principal Role="Genres">
               <PropertyRef Name="genre_id" />
             </Principal>
             <Dependent Role="Albums">
@@ -171,13 +181,14 @@
           <EntitySet Name="Albums" EntityType="Self.Albums" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Artists" EntityType="Self.Artists" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Labels" EntityType="Self.Labels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Albums_Genre" Association="Self.FK_Albums_Genre">
-            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Genres" EntitySet="Genres" />
             <End Role="Albums" EntitySet="Albums" />
           </AssociationSet>
           <AssociationSet Name="FK_Albums_Labels" Association="Self.FK_Albums_Labels">
@@ -223,7 +234,7 @@
           <Property Name="genre_id" Type="Int32" />
           <Property Name="label_id" Type="Int32" />
           <Property Name="type_id" Type="Int32" />
-          <NavigationProperty Name="Genre" Relationship="Self.FK_Albums_Genre" FromRole="Albums" ToRole="Genre" />
+          <NavigationProperty Name="Genres" Relationship="Self.FK_Albums_Genre" FromRole="Albums" ToRole="Genres" />
           <NavigationProperty Name="Labels" Relationship="Self.FK_Albums_Labels" FromRole="Albums" ToRole="Labels" />
           <NavigationProperty Name="Types" Relationship="Self.FK_Albums_Types" FromRole="Albums" ToRole="Types" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Albums" FromRole="Albums" ToRole="Users" />
@@ -247,13 +258,13 @@
           <Property Name="country_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Labels" Relationship="Self.FK_Labels_Countries" FromRole="Countries" ToRole="Labels" />
         </EntityType>
-        <EntityType Name="Genre">
+        <EntityType Name="Genres">
           <Key>
             <PropertyRef Name="genre_id" />
           </Key>
           <Property Name="genre_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="info" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Genre" FromRole="Genre" ToRole="Albums" />
+          <Property Name="name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Genre" FromRole="Genres" ToRole="Albums" />
         </EntityType>
         <EntityType Name="Labels">
           <Key>
@@ -274,6 +285,16 @@
           <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Types">
           <Key>
@@ -303,10 +324,10 @@
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Albums_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Genres" Type="Self.Genres" Multiplicity="0..1" />
           <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genre">
+            <Principal Role="Genres">
               <PropertyRef Name="genre_id" />
             </Principal>
             <Dependent Role="Albums">
@@ -390,13 +411,14 @@
           <EntitySet Name="Albums" EntityType="Self.Albums" />
           <EntitySet Name="Artists" EntityType="Self.Artists" />
           <EntitySet Name="Countries" EntityType="Self.Countries" />
-          <EntitySet Name="Genre" EntityType="Self.Genre" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" />
           <EntitySet Name="Labels" EntityType="Self.Labels" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Albums_Genre" Association="Self.FK_Albums_Genre">
-            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Genres" EntitySet="Genres" />
             <End Role="Albums" EntitySet="Albums" />
           </AssociationSet>
           <AssociationSet Name="FK_Albums_Labels" Association="Self.FK_Albums_Labels">
@@ -464,11 +486,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Genre">
-            <EntityTypeMapping TypeName="MuModel.Genre">
-              <MappingFragment StoreEntitySet="Genre">
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="MuModel.Genres">
+              <MappingFragment StoreEntitySet="Genres">
                 <ScalarProperty Name="genre_id" ColumnName="genre_id" />
-                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -488,6 +510,17 @@
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MuModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

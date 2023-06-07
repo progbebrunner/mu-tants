@@ -12,16 +12,16 @@ namespace mu_tants
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class Genres
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
+        public Genres()
         {
             this.Albums = new HashSet<Albums>();
         }
     
         public int genre_id { get; set; }
-        public string info { get; set; }
+        public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albums> Albums { get; set; }

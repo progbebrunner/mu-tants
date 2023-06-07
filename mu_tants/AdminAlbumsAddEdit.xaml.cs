@@ -33,6 +33,12 @@ namespace mu_tants
             var albums = App.Context.Albums.Where(a => a.album_id == x).ToList();
             AlbumImg.ItemsSource = null;
             AlbumImg.ItemsSource = albums;
+            AlbumName.Text = 
+            ArtistName.Text = 
+            ReleaseDate.Text = 
+            Length.Text = 
+            LabelName.Text = 
+            Type.Text = 
             AlbumInfo.ItemsSource = null;
             AlbumInfo.ItemsSource = albums;
         }

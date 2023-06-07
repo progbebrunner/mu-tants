@@ -23,7 +23,7 @@ namespace mu_tants
     /// </summary>
     public partial class Authorization : Page
     {
-        SqlConnection myConnection = new SqlConnection("Server = localhost\\SQLEXPRESS; database = mu-tants; Integrated Security=True; TrustServerCertificate = True");      
+        SqlConnection myConnection = new SqlConnection("Server = (localdb)\\MSSQLLocaldb; database = mu-tants; Integrated Security=True; TrustServerCertificate = True");      
 
 
         public Authorization()
