@@ -10,9 +10,10 @@
 namespace mu_tants
 {
     using System;
+    using System.Linq;
     using System.IO;
     using System.Collections.Generic;
-
+    
     public partial class Labels
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +21,20 @@ namespace mu_tants
         {
             this.Albums = new HashSet<Albums>();
         }
-
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Labels\");
 
         public int label_id { get; set; }
         public string label_name { get; set; }
         public Nullable<int> location { get; set; }
+        public string new_location
+        {
+            get
+            {
+                var locations = App.Context.Countries.ToList();
+                var country = locations.Where(a => a.country_id == location).FirstOrDefault();
+                return country.country_name;
+            }
+        }
         public string label_info { get; set; }
         public string label_img { get; set; }
         public string new_img
@@ -45,6 +54,6 @@ namespace mu_tants
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albums> Albums { get; set; }
-        public virtual ICollection<Countries> Countries { get; set; }
+        public virtual Countries Countries { get; set; }
     }
 }

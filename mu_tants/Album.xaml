@@ -31,7 +31,7 @@
                             <TextBlock  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
                             <Button  Width="auto" Content="{Binding artist_name}" Click="ArtistButton_Click" FontSize="23"/>
                             <TextBlock  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
-                            <TextBlock  Width="auto" Text="{Binding length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
+                            <TextBlock  Width="auto" Text="{Binding new_length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
                             <TextBlock  Width="auto" Text="{Binding genre}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
                             <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click" FontSize="23"/>
                             <Button  Width="auto" Content="{Binding type_name}" Click="TypeButton_Click" FontSize="23"/>

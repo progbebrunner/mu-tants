@@ -20,11 +20,12 @@ namespace mu_tants
     /// </summary>
     public partial class AdminAlbums : Page
     {
-        public int album_id;
+        public int id_album;
         public AdminAlbums()
         {
             InitializeComponent();
             AlbumsLoad();
+
         }
 
         public void AlbumsLoad()
@@ -84,22 +85,24 @@ namespace mu_tants
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AdminAlbumsAddEdit(album_id));
+            NavigationService.Navigate(new AdminAlbumsAddEdit());
         }
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AdminAlbumsAddEdit(album_id));
+            var button = sender as Button;
+            var album = button.DataContext as Albums;
+            NavigationService.Navigate(new AdminAlbumsAddEdit(album));
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var albums = App.Context.Albums.ToList();
-            var currentAlbums = albums.Where(u => u.album_id == album_id).FirstOrDefault();
+            var button = sender as Button;
+            var currentAlbum = button.DataContext as Albums;
             if (MessageBox.Show($"Вы точно хотите удалить альбом?",
                 "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                App.Context.Albums.Remove(currentAlbums);
+                App.Context.Albums.Remove(currentAlbum);
                 App.Context.SaveChanges();
                 AlbumsLoad();
                 MessageBox.Show("Альбом был удален", "Внимание");

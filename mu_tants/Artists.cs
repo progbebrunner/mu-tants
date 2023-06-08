@@ -19,8 +19,8 @@ namespace mu_tants
         public Artists()
         {
             this.Users = new HashSet<Users>();
-            this.Genres = new HashSet<Genres>();
         }
+
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Artists\");
 
         public int artist_id { get; set; }
@@ -61,7 +61,5 @@ namespace mu_tants
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Genres> Genres { get; set; }
     }
 }

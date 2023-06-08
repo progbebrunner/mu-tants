@@ -145,9 +145,6 @@
     <Compile Include="Roles.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>MuModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Types.cs">
       <DependentUpon>MuModel.tt</DependentUpon>
     </Compile>
@@ -256,7 +253,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Притчин 50-02. УП РПМ 01.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

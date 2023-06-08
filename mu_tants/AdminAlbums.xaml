@@ -35,12 +35,12 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" Height="auto" Width="auto">
                             <Image x:Name="ImageService" Width="200" Height="200" Source="{Binding new_img}"/>
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="auto" Width="250px">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="auto" Width="300px">
                                 <Button HorizontalAlignment="Center" Content="{Binding artist_name}" Click="ArtistButton_Click" Width="auto" Padding="5px"></Button>
                                 <Button HorizontalAlignment="Center" Content="{Binding album_name}" Click="AlbumButton_Click" Width="auto" Padding="5px"></Button>
                                 <StackPanel>
                                     <Button x:Name="ChangeButton" Content="Редактировать" Click="ChangeButton_Click" Width="auto" Padding="5px"/>
-                                    <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click" Width="auto" Padding="5px"/>
+                                    <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Width="auto" Padding="5px"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>

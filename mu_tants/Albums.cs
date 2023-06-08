@@ -20,14 +20,23 @@ namespace mu_tants
         public Albums()
         {
             this.Users = new HashSet<Users>();
-            this.Genres = new HashSet<Genres>();
         }
+
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Albums\");
+        public string just_path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\");
 
         public int album_id { get; set; }
         public string album_name { get; set; }
         public int artist_id { get; set; }
         public int length { get; set; }
+        public string new_length
+        {
+            get 
+            {
+                return length.ToString();
+            }
+        }
+
         public string artist_name
         {
             get
@@ -49,7 +58,7 @@ namespace mu_tants
                 }
                 else
                 {
-                    return "just_img.png";
+                    return just_path + "just_img.png";
                 }
             }
         }
@@ -59,7 +68,7 @@ namespace mu_tants
         {
             get
             {
-                return release_date.Value.Date.ToString();
+                return release_date.Value.ToString("d");
             }
         }
         public Nullable<int> genre_id { get; set; }
@@ -93,11 +102,10 @@ namespace mu_tants
             }
         }
 
+        public virtual Genres Genres { get; set; }
         public virtual Labels Labels { get; set; }
         public virtual Types Types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Genres> Genres { get; set; }
     }
 }

@@ -12,37 +12,49 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Альбом</TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Исполнитель</TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Дата выпуска</TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Длительность</TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Лэйбл</TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Список</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="10px" VerticalAlignment="Center" Background="{StaticResource ColorAccent}">
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Альбом</TextBlock>
+                <TextBox Width="auto" Name="AlbumName" FontSize="20" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Исполнитель</TextBlock>
+                <ComboBox Width="auto" Name="ArtistName" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Дата выпуска</TextBlock>
+                <DatePicker x:Name="ReleaseDate" FontSize="23"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Длительность</TextBlock>
+                <TextBox Width="auto" Name="Length" FontSize="20"/>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center">мин.</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Жанр</TextBlock>
+                <ComboBox Width="auto" Name="Genre" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Лэйбл</TextBlock>
+                <ComboBox Width="auto" Name="LabelName" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Список</TextBlock>
+                <ComboBox Width="auto" Name="Type" FontSize="20"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Column="1" Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox Width="auto" Name="AlbumName"  FontSize="20"/>
-            <TextBox Width="auto" Name="ArtistName" FontSize="20"/>
-            <TextBox Width="auto" Name="ReleaseDate" FontSize="20"/>
-            <TextBox Width="auto" Name="Length" FontSize="20"/>
-            <TextBox Width="auto" Name="LabelName" FontSize="20"/>
-            <TextBox Width="auto" Name="Type" FontSize="20"/>
+        <StackPanel Grid.Row="0" Grid.Column="11" Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center">
+            <Image x:Name="AlbumImg" Width="auto" Height="auto" MaxHeight="350" MaxWidth="350"/>
+            <Button x:Name="AddImgButton" Content="Изменить обложку"  Click="AddImgButton_Click" Width="auto" Padding="5px"/>
         </StackPanel>
-
-        <ListView x:Name="AlbumImg" Grid.Column="2" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <StackPanel Orientation="Vertical" Height="auto" Width="auto">
-                            <Image x:Name="ImageService" Width="auto" Height="auto" MaxHeight="350" MaxWidth="350" Source="{Binding new_img}"/>
-                            <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click" Width="auto" Padding="5px"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button Grid.Column="1" x:Name="SaveButton" Content="Сохранить"  Click="SaveButton_Click" Width="auto" Padding="5px" VerticalAlignment="Bottom" Margin="10px"/>
+        <Button x:Name="SaveButton" Content="Сохранить" Grid.Column="0" Grid.Row="2" Click="SaveButton_Click" Width="auto" Padding="5px"/>
+        <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="2" Click="DeleteButton_Click" Width="auto" Padding="5px"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Height="50" Width="auto" Foreground="Red" FontSize="20" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
     </Grid>
 </Page>
