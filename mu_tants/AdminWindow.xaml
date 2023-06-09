@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mu_tants"
         mc:Ignorable="d"
-        Title="/mu/tants" Height="800" Width="1200" MinHeight="450" MinWidth="900" Loaded="Window_Loaded">
+        Title="/mu/tants" Height="900" Width="1200" MinHeight="450" MinWidth="900" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource ColorSecondary}"></Grid>
         <Grid Grid.Row="1" Background="{StaticResource ColorAccent}"></Grid>

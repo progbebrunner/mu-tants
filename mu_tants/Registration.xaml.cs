@@ -53,7 +53,7 @@ namespace mu_tants
         {
             OpenFileDialog imgch = new OpenFileDialog();
             imgch.Multiselect= false;
-            imgch.Filter = "Image | *.png; *.jpg; *.jpeg";
+            imgch.Filter = "Image | *.png";
             if (imgch.ShowDialog() == true)
             {
                 justimg = Path.GetFileName(imgch.FileName);

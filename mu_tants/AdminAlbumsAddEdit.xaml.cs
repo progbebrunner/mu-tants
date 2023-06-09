@@ -26,7 +26,7 @@ namespace mu_tants
     /// </summary>
     public partial class AdminAlbumsAddEdit : Page
     {
-        public Albums album = null;
+        public Albums current_album = null;
         public byte[] _mainImageData = null;
         public string justimg = null;
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Albums\");
@@ -40,8 +40,8 @@ namespace mu_tants
         public AdminAlbumsAddEdit(Albums x)
         {
             InitializeComponent();
-            album = x;
-            AlbumLoad(album);
+            current_album = x;
+            AlbumLoad(current_album);
         }
         public AdminAlbumsAddEdit()
         {
@@ -51,8 +51,6 @@ namespace mu_tants
 
         public void AlbumLoad(Albums album)
         {
-            var albums = App.Context.Albums.ToList();
-
             ArtistName.ItemsSource = App.Context.Artists.Select(x => x.artist_name).ToList();
             Genre.ItemsSource = App.Context.Genres.Select(x => x.name).ToList();
             LabelName.ItemsSource = App.Context.Labels.Select(x => x.label_name).ToList();
@@ -66,8 +64,7 @@ namespace mu_tants
             LabelName.Text = album.label_name;
             Type.Text = album.type_name;
             AlbumImg.Source = new ImageSourceConverter().ConvertFrom(album.new_img) as ImageSource;
-
-
+            justimg = album.album_img;
         }
 
         public void InfoLoad()
@@ -82,7 +79,7 @@ namespace mu_tants
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            int id_album = album.album_id;
+            int id_album = current_album.album_id;
             var albums = App.Context.Albums.ToList();
             var currentAlbums = albums.Where(u => u.album_id == id_album).FirstOrDefault();
             if (MessageBox.Show($"Вы точно хотите удалить альбом?",
@@ -136,22 +133,43 @@ namespace mu_tants
                                     }
                                     path = path + justimg;
                                     File.Copy(selectedFile, path);
-                                }
-                                var new_album = new Albums
-                                {
-                                    album_img = name_artist + " " + AlbumName.Text.ToLower().Trim() + ".png",
-                                    album_name = AlbumName.Text.Trim(),
-                                    artist_id = id_artist,
-                                    length = Int32.Parse(Length.Text.Trim()),
-                                    release_date = DateTime.Parse(ReleaseDate.Text.Trim()),
-                                    genre_id = id_genre,
-                                    label_id = id_label,
-                                    type_id = id_type
-                                };
 
-                                App.Context.Albums.Add(new_album);
-                                App.Context.SaveChanges();
-                                MessageBox.Show("Альбом успешно добавлен");
+                                    if (current_album == null)
+                                    {
+
+                                        var new_album = new Albums
+                                        {
+                                            album_img = name_artist + " " + AlbumName.Text.ToLower().Trim() + ".png",
+                                            album_name = AlbumName.Text.Trim(),
+                                            artist_id = id_artist,
+                                            length = Int32.Parse(Length.Text.Trim()),
+                                            release_date = DateTime.Parse(ReleaseDate.Text.Trim()),
+                                            genre_id = id_genre,
+                                            label_id = id_label,
+                                            type_id = id_type
+                                        };
+
+                                        App.Context.Albums.Add(new_album);
+                                        App.Context.SaveChanges();
+                                        MessageBox.Show("Альбом успешно добавлен");
+                                        NavigationService.Navigate(new AdminAlbums());
+                                    }
+                                    else
+                                    {                                        
+                                        current_album.album_img = justimg;
+                                        current_album.album_name = AlbumName.Text.Trim();
+                                        current_album.artist_id = id_artist;
+                                        current_album.length = Int32.Parse(Length.Text.Trim());
+                                        current_album.release_date = DateTime.Parse(ReleaseDate.Text.Trim());
+                                        current_album.genre_id = id_genre;
+                                        current_album.label_id = id_label;
+                                        current_album.type_id = id_type;
+
+                                        App.Context.SaveChanges();
+                                        MessageBox.Show("Данные по альбому успешно обновлены");
+                                        NavigationService.Navigate(new AdminAlbums());
+                                    }
+                                }
                             }
                             else
                             {
@@ -187,7 +205,7 @@ namespace mu_tants
         {
             OpenFileDialog imgch = new OpenFileDialog();
             imgch.Multiselect = false;
-            imgch.Filter = "Image | *.png; *.jpg; *.jpeg";
+            imgch.Filter = "Image | *.png";
             if (imgch.ShowDialog() == true)
             {
                 justimg = Path.GetFileName(imgch.FileName);

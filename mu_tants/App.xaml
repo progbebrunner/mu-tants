@@ -14,8 +14,9 @@
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="FontFamily" Value="Gill Sans MT"/>
             <Setter Property="Width" Value="auto"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Height" Value="auto"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Background" Value="{StaticResource ColorSecondary}"/>
             <Setter Property="BorderThickness" Value="0"/>

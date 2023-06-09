@@ -12,35 +12,47 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Альбом </TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Исполнитель </TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Дата выпуска </TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Длительность </TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Жанр </TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Лэйбл </TextBlock>
-            <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Список </TextBlock>
-        </StackPanel>
-        <ListView x:Name="AlbumInfo" Grid.Column="1" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+        
+        <ListView x:Name="AlbumInfo" Grid.Column="0" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <StackPanel Orientation="Vertical" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
-                            <Button  Width="auto" Content="{Binding artist_name}" Click="ArtistButton_Click" FontSize="23"/>
-                            <TextBlock  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
-                            <TextBlock  Width="auto" Text="{Binding new_length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
-                            <TextBlock  Width="auto" Text="{Binding genre}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
-                            <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click" FontSize="23"/>
-                            <Button  Width="auto" Content="{Binding type_name}" Click="TypeButton_Click" FontSize="23"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Альбом</TextBlock>
+                                <TextBlock  Width="auto" Text="{Binding album_name}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Исполнитель</TextBlock>
+                                <Button  Width="auto" Content="{Binding artist_name}" Click="ArtistButton_Click" FontSize="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Дата выпуска</TextBlock>
+                                <TextBlock  Width="auto" Text="{Binding new_release_date}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Длительность</TextBlock>
+                                <TextBlock  Width="auto" Text="{Binding new_length}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Жанр</TextBlock>
+                                <TextBlock  Width="auto" Text="{Binding genre}" Style="{StaticResource BlockCommon}" Background="Transparent" FontSize="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Лейбл</TextBlock>
+                                <Button  Width="auto" Content="{Binding label_name}" Click="LabelButton_Click" FontSize="23"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Список</TextBlock>
+                                <Button  Width="auto" Content="{Binding type_name}" Click="TypeButton_Click" FontSize="23"/>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView x:Name="AlbumImg" Grid.Column="2" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center">
+        <ListView x:Name="AlbumImg" Grid.Column="2" MinHeight="250" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

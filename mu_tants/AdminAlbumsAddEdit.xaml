@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:mu_tants"
       mc:Ignorable="d" 
-      d:DesignHeight="675" d:DesignWidth="1000"
+      d:DesignHeight="700" d:DesignWidth="1000"
       Title="Альбом">
 
     <Grid>
@@ -20,32 +20,32 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="10px" VerticalAlignment="Center" Background="{StaticResource ColorAccent}">
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Альбом</TextBlock>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Альбом</TextBlock>
                 <TextBox Width="auto" Name="AlbumName" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Исполнитель</TextBlock>
-                <ComboBox Width="auto" Name="ArtistName" FontSize="20"/>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Исполнитель</TextBlock>
+                <ComboBox Width="auto" Name="ArtistName" FontSize="20" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Дата выпуска</TextBlock>
-                <DatePicker x:Name="ReleaseDate" FontSize="23"/>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Дата выпуска</TextBlock>
+                <DatePicker x:Name="ReleaseDate" FontSize="23" Width="200"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Длительность</TextBlock>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Длительность</TextBlock>
                 <TextBox Width="auto" Name="Length" FontSize="20"/>
                 <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center">мин.</TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Жанр</TextBlock>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Жанр</TextBlock>
                 <ComboBox Width="auto" Name="Genre" FontSize="20"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Лэйбл</TextBlock>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Лэйбл</TextBlock>
                 <ComboBox Width="auto" Name="LabelName" FontSize="20"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
-                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px">Список</TextBlock>
+                <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center" Width="200px" TextAlignment="Center">Список</TextBlock>
                 <ComboBox Width="auto" Name="Type" FontSize="20"/>
             </StackPanel>
         </StackPanel>

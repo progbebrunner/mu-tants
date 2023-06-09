@@ -24,7 +24,6 @@ namespace mu_tants
         string user_login;
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Users\");
 
-
         public HomeWindow(string x)
         {
             InitializeComponent();
@@ -56,10 +55,10 @@ namespace mu_tants
         {
             var users = App.Context.Users.ToList();
             var currentUser = users.Where(u => u.login == user_login).FirstOrDefault();
-            var img = currentUser.user_img;
-            if (currentUser.user_img == null)
+            var img = currentUser.new_img;
+            if (img == null)
             {
-                img = "default_ava.png";
+                img = "just_img.png";
             }
             var profilePic = new BitmapImage(new Uri(path + img, UriKind.Relative));
             (UserPhoto.Fill as ImageBrush).ImageSource = profilePic;

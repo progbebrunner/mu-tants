@@ -11,11 +11,30 @@ namespace mu_tants
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+    using System.IO;
+
     public partial class Users
     {
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\Users\");
+        public string just_path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Resources\");
+
         public int user_id { get; set; }
         public string user_img { get; set; }
+        public string new_img
+        {
+            get
+            {
+                if (File.Exists(path + user_img))
+                {
+                    return path + user_img;
+                }
+                else
+                {
+                    return just_path + "just_img.png";
+                }
+            }
+        }
         public string login { get; set; }
         public string password { get; set; }
         public Nullable<int> role { get; set; }

@@ -35,35 +35,38 @@ namespace mu_tants
         {
             try
             {
-                string login = txtLogin.Text.ToString();
-                string password = txtPwd.Password.ToString();
-                myConnection.Open();
-                string loginquery = $"select login, password, role from Users where Login = '{login}';";
-                SqlDataAdapter adpt = new SqlDataAdapter(loginquery, myConnection);
-                DataTable table = new DataTable();
-                adpt.Fill(table);
-                myConnection.Close();
+                //string login = txtLogin.Text.ToString();
+                //string password = txtPwd.Password.ToString();
+                //myConnection.Open();
+                //string loginquery = $"select login, password, role from Users where Login = '{login}';";
+                //SqlDataAdapter adpt = new SqlDataAdapter(loginquery, myConnection);
+                //DataTable table = new DataTable();
+                //adpt.Fill(table);
+                //myConnection.Close();
 
-                if (table.Rows.Count == 1)
+                var user_log = App.Context.Users.Where(u => u.login == txtLogin.Text.Trim()).ToList();
+
+                if (user_log.Count == 1)
                 {
-                    if (table.Rows[0][1].ToString() == password)
+                    //var user_pass = App.Context.Users.Where(u => u.password == PasswordBox.ToString().Trim());
+                    if (user_log[0].password.ToString() == txtPwd.Password.ToString())
                     {
 
-                        if (table.Rows[0][2].ToString() == "1")
+                        if (user_log[0].role == 1)
                         {
-                            AdminWindow adminWindow = new AdminWindow(table.Rows[0][0].ToString());
+                            AdminWindow adminWindow = new AdminWindow(user_log[0].login);
                             adminWindow.Show();
                         }
                         else
                         {
-                            if (table.Rows[0][2].ToString().Trim() == "")
+                            if (user_log[0].role.ToString().Trim() == "")
                             {
-                                HomeWindow homeWindow = new HomeWindow("2");
+                                HomeWindow homeWindow = new HomeWindow("guest");
                                 homeWindow.Show();
                             }
                             else
                             {
-                                HomeWindow homeWindow = new HomeWindow(table.Rows[0][0].ToString());
+                                HomeWindow homeWindow = new HomeWindow(user_log[0].login);
                                 homeWindow.Show();
                             }
                         }

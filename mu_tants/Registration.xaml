@@ -35,11 +35,11 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Height="333">
             <Image x:Name="ImageService" Width="200" Height="200" Source="Resources/just_img.png"/>
-            <Button x:Name="AddImageButton" Content="Добавить картинку" Width="150" Margin="10" Click="AddImageButton_Click"/>
+            <Button x:Name="AddImageButton" Content="Добавить картинку" Margin="10" Click="AddImageButton_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,80,0,0">
             <TextBlock Grid.Column="1" Margin="0 250 0 0" Height="50" Width="250" Foreground="Red" FontSize="15" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
-            <Button Grid.Column="1" Name="AddUserButton" Content="Сохранить" Height="50" Width="200" Click="AddUserButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15 0 0 "/>
+            <Button Grid.Column="1" Name="AddUserButton" Content="Сохранить" Height="50" Click="AddUserButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15 0 0 "/>
         </StackPanel>
 
     </Grid>
