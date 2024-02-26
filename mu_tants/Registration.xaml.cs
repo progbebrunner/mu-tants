@@ -63,6 +63,11 @@ namespace mu_tants
                 ImageService.Source = new ImageSourceConverter().ConvertFrom(_mainImageData) as ImageSource;
             }
         }
+        private void TxtErrorClear(object sender, RoutedEventArgs e)
+        {
+            txtError.Text = "";
+        }
+
 
         private void AddUserButton_Click(object sender, RoutedEventArgs e)
         {
@@ -91,34 +96,43 @@ namespace mu_tants
                             {
                                 if (emailch.Count > 0)
                                 {
-                                    if (justimg != null)
+                                    if (dtBirthday.Text.Trim().ToString() != "")
                                     {
-                                        justimg = txtLogin.Text + extension;
-                                        int x = 0;
-                                        while (File.Exists(path + justimg))
-                                        {
-                                            x++;
-                                            justimg = txtLogin.Text + $" {x}" + extension;
-                                        }
-                                        if (selectedFile != null)
-                                        {
-                                            File.Copy(selectedFile, path + justimg);
-                                        }
-                                        else
-                                        {
-                                            justimg = null;
-                                        }
-                                    }
 
-                                    myConnection.Open();
-                                    string addquery = $"insert into Users([user_img],[login],[password],[role],[name],[surname],[email],[birthday]) values ('{justimg}', Trim('{txtLogin.Text}'), Trim('{txtPassword.Password}'), '2', Trim('{txtName.Text}'), Trim('{txtSurname.Text}'), Trim('{txtEmail.Text}'), '{dtBirthday.Text}')";
-                                    SqlDataAdapter addadpt = new SqlDataAdapter(addquery, myConnection);
-                                    DataTable addtable = new DataTable();
-                                    addadpt.Fill(addtable);
-                                    myConnection.Close();
-                                    //MessageBox.Show("Проверки пройдены");
-                                    NavigationService.Navigate(new Authorization());
-                                    MessageBox.Show("Поздравляю, вы успешно зарегестрировались. Чтобы продолжить, войдите в систему");
+
+                                        if (justimg != null)
+                                        {
+                                            justimg = txtLogin.Text + extension;
+                                            int x = 0;
+                                            while (File.Exists(path + justimg))
+                                            {
+                                                x++;
+                                                justimg = txtLogin.Text + $" {x}" + extension;
+                                            }
+                                            if (selectedFile != null)
+                                            {
+                                                File.Copy(selectedFile, path + justimg);
+                                            }
+                                            else
+                                            {
+                                                justimg = null;
+                                            }
+                                        }
+
+                                        myConnection.Open();
+                                        string addquery = $"insert into Users([user_img],[login],[password],[role],[name],[surname],[email],[birthday]) values ('{justimg}', Trim('{txtLogin.Text}'), Trim('{txtPassword.Password}'), '2', Trim('{txtName.Text}'), Trim('{txtSurname.Text}'), Trim('{txtEmail.Text}'), '{dtBirthday.Text}')";
+                                        SqlDataAdapter addadpt = new SqlDataAdapter(addquery, myConnection);
+                                        DataTable addtable = new DataTable();
+                                        addadpt.Fill(addtable);
+                                        myConnection.Close();
+                                        //MessageBox.Show("Проверки пройдены");
+                                        NavigationService.Navigate(new Authorization());
+                                        MessageBox.Show("Поздравляю, вы успешно зарегестрировались. Чтобы продолжить, войдите в систему");
+                                    }
+                                    else
+                                    {
+                                        txtError.Text = " Вы не ввели дату рождения";
+                                    }
                                 }
                                 else
                                 {

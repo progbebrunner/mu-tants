@@ -36,8 +36,8 @@
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Height="auto" Width="250px">
                                 <Button HorizontalAlignment="Center" Content="{Binding artist_name}" Click="ArtistButton_Click" Width="auto" Padding="5px"></Button>
                                 <StackPanel>
-                                    <Button x:Name="ChangeButton" Content="Редактировать" Click="ChangeButton_Click" Width="auto" Padding="5px"/>
-                                    <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click" Width="auto" Padding="5px"/>
+                                    <!--<Button x:Name="ChangeButton" Content="Редактировать" Click="ChangeButton_Click" Width="auto" Padding="5px"/>
+                                    <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click" Width="auto" Padding="5px"/>-->
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>

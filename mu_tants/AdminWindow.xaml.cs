@@ -29,6 +29,7 @@ namespace mu_tants
             InitializeComponent();
             user_login = x;
             FrameAdmin.Navigate(new Homepage());
+           
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

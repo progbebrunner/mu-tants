@@ -93,5 +93,10 @@ namespace mu_tants
         {
             NavigationService.Navigate(new Registration());
         }
+
+        private void txtPwd_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtError.Text = "";
+        }
     }
 }

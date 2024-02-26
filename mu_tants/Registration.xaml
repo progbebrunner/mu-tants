@@ -13,9 +13,9 @@
             <RowDefinition Height="450"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="260"/>
-            <ColumnDefinition Width="260"/>
-            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="240"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0">
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> Логин</TextBlock>
@@ -26,11 +26,11 @@
             <TextBlock Margin="10" FontSize="23"  HorizontalAlignment="Center"> День рождения</TextBlock>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0">
-            <TextBox Name="txtLogin" Width="200" Height="30" Margin="10"/>
-            <PasswordBox Name="txtPassword" Width="200" Height="30" Margin="10"/>
-            <TextBox Name="txtName" Width="200" Height="30" Margin="10"/>
-            <TextBox Name="txtSurname" Width="200" Height="30" Margin="10"/>
-            <TextBox Name="txtEmail" Width="200" Height="30" Margin="10"/>
+            <TextBox Name="txtLogin" Width="200" Height="30" Margin="10" TextChanged="TxtErrorClear"/>
+            <PasswordBox Name="txtPassword" Width="200" Height="30" Margin="10" PasswordChanged="TxtErrorClear"/>
+            <TextBox Name="txtName" Width="200" Height="30" Margin="10" TextChanged="TxtErrorClear"/>
+            <TextBox Name="txtSurname" Width="200" Height="30" Margin="10" TextChanged="TxtErrorClear"/>
+            <TextBox Name="txtEmail" Width="200" Height="30" Margin="10" TextChanged="TxtErrorClear"/>
             <DatePicker Name="dtBirthday" Width="200" Height="30" Margin="10"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Height="333">
@@ -38,7 +38,7 @@
             <Button x:Name="AddImageButton" Content="Добавить картинку" Margin="10" Click="AddImageButton_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,80,0,0">
-            <TextBlock Grid.Column="1" Margin="0 250 0 0" Height="50" Width="250" Foreground="Red" FontSize="15" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="1" Margin="0 250 0 0" Height="50" Width="300" Foreground="Red" FontSize="15" HorizontalAlignment="Center" x:Name="txtError" TextAlignment="Center" TextWrapping="Wrap"/>
             <Button Grid.Column="1" Name="AddUserButton" Content="Сохранить" Height="50" Click="AddUserButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 15 0 0 "/>
         </StackPanel>
 
